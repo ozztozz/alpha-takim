@@ -1,0 +1,116 @@
+
+
+
+<!--/Modal yuzme Tabs-->
+          
+          <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+            <div class="mb-2   ">
+        
+                <div class="pt-3">
+                    <button data-modal="yuzmeFormModal" class="modal-trigger bg-gray-500 hover:bg-gray-400 text-white text-xs  py-1 px-2 rounded">
+                        Güncelle
+                    </button>
+                </div>
+        
+            </div>
+            <div id="yuzmeFormModal" class="modal-wrapper">
+                <div class="overlay close-modal"></div>
+                <div class="modal modal-centered">
+                    <div class="modal-content shadow-lg py-1">
+                        <div class="border-b pb-3 pt-0 mb-4">
+                           <div class="flex justify-between p-4 items-center">
+                            <p class="text-gray-800 font-medium">Yüzme Bilgileri</p>
+                                <span class="close-modal cursor-pointer py-1 rounded-full bg-gray-100 hover:bg-gray-200">
+                                    <i ><img class="h-6 w-6" src="https://img.icons8.com/?size=100&id=121477&format=png&color=000000" alt=""></i>
+                                </span>
+                           </div>
+                        </div>
+                        <div class="w-full max-w-lg">
+                            <div class="leading-loose">
+            <form method="post" action="{%url 'sporcupdate' sporcu.s_uuid 'yuzme' %}" class="max-w-xl m-4 p-4 bg-white rounded shadow-xl">
+                {% csrf_token %}
+                
+ 
+                <div class="mt-2">
+                    {{ formYuzme.yuzme_gecmisi.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar süreyle?</label>
+                     {{ formYuzme.yuzme_gecmisi }}             
+                </div>
+        <div class="mt-2">
+                    {{ formYuzme.yuzme_bilgisi.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Hangi yüzme tekniklerini biliyor? (Serbest / Sırtüstü/ Kurbağalama /
+            Kelebek)</label>
+            
+                                        
+                        <div id="id_yuzme_bilgisi" class="w-full inline-flex justify-between text-gray-700 bg-gray-200 rounded">
+                            <div>
+                            <label for="id_yuzme_bilgisi_0"><input type="checkbox" name="yuzme_bilgisi" value="Serbest" class="  text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_0">
+                        Serbest</label>
+
+                        </div>
+                        <div>
+                            <label for="id_yuzme_bilgisi_1"><input type="checkbox" name="yuzme_bilgisi" value="Sırtüstü" class=" text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_1">
+                        Sırtüstü</label>
+
+                        </div><div>
+                            <label for="id_yuzme_bilgisi_2"><input type="checkbox" name="yuzme_bilgisi" value="Kelebek" class="  text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_2">
+                        Kelebek</label>
+
+                        </div><div>
+                            <label for="id_yuzme_bilgisi_3"><input type="checkbox" name="yuzme_bilgisi" value="Kurbağalama" class="  text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_3">
+                        Kurbağalama</label>
+
+                        </div>
+                        </div>
+
+
+                </div>
+                                <div class="mt-2">
+                    {{ formYuzme.derinlik.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Derin suya girebiliyor mu?</label>
+                     {{ formYuzme.derinlik }}             
+                </div>
+                                <div class="mt-2">
+                    {{ formYuzme.su_korkusu.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Suya atlama / batma korkusu yaşıyor mu?</label>
+                     {{ formYuzme.su_korkusu }}             
+                </div>
+                                <div class="mt-2">
+                    {{ formYuzme.denizde_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Havuz dışında denizde / gölde yüzme deneyimi oldu mu?</label>
+                     {{ formYuzme.denizde_yuzme }}             
+                </div>
+                                                <div class="mt-2">
+                    {{ formYuzme.neden_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Aile bu eğitimi neden aldırmak istiyor? (Hobi, öğrenme, lisansli yüzücü vb.)</label>
+                     {{ formYuzme.neden_yuzme }}             
+                </div>
+                                            <div class="mt-2">
+                    {{ formYuzme.diger_spor.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve saatleri)</label>
+                     {{ formYuzme.diger_spor }}             
+                </div>
+                                                <div class="mt-2">
+                    {{ formYuzme.istek_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Sporcu bu eğitime ne kadar istekli? (Aile gözlemine göre)</label>
+                     {{ formYuzme.istek_yuzme }}             
+                </div>
+                                                <div class="mt-2">
+                    {{ formYuzme.vade_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Ailenin uzun vadeli beklentisi nedir?</label>
+                     {{ formYuzme.vade_yuzme }}             
+                </div>
+          
+    <div class="mt-4">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                </div>
+     
+            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--/Modal saglik  Tabs-->

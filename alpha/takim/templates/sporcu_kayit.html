@@ -1,0 +1,68 @@
+{% extends '_base_kayit.html' %}
+
+
+{% block content %}
+<!-- component -->
+<!-- component -->
+
+
+
+    <!-- ====== Hero Section Start -->
+    <div class="relative bg-white">
+      <div class="container">
+        <div class="lg:ml-auto lg:flex">
+            <div class="relative inline-block  lg:pt-0">
+              <img
+                src="/media/logo4.jpeg"
+                alt="hero"
+                class="max-w-full rounded-t-lg lg:ml-auto"
+              />
+
+            </div>
+          </div>
+     
+        <div class="flex flex-wrap  lg:flex lg:justify-center">
+          <div class="w-full lg:w-5/12 px-4">
+            <div class="hero-content">
+
+                
+              <h1
+                class="text-center
+                  text-gray-800
+                  font-semibold
+                  font-sans
+                  text-4xl
+                  sm:text-[42px]
+                  lg:text-[40px]
+                  xl:text-[42px]
+                  leading-snug
+                  mb-3
+                "
+              >
+         HOŞGELDİNİZ
+              </h1>
+              <p class="text-base mb-8 text-body-color max-w-[480px]">
+Yüzme öğrenmek ya da profesyonel bir yüzücü olmak istiyorsanız, doğru yerdesiniz! <br>
+Hedefinize ulaşmak için hemen kayıt formumuzu doldurun, suya bizimle güçlü bir adım atın!
+              </p>
+              <ul class="flex flex-wrap justify-center items-center">
+                <li>{% include 'partials/modal_sporcu_yeni.html' %}</li>
+
+              </ul>
+
+            </div>
+            
+          </div>
+          <div class="hidden lg:block lg:w-1/12 px-4"></div>
+          <div class="w-full lg:w-6/12 px-4">
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ====== Hero Section End -->
+
+    
+{% endblock content %}
+    

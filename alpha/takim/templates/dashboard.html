@@ -1,0 +1,83 @@
+{% extends "base_dashboard.html" %}
+
+{% block content %}
+
+
+                <div class="flex flex-col">
+
+                   
+                   
+                    {% include 'partials/modal_takim.html' %}
+                    <!-- Takım bilgileri -->
+                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+                        {% for takim in takimlar %}
+                        <div class="shadow-lg bg-{{takim.renk}}-500 border-l-8 hover:bg-{{takim.renk}}-600 border-{{takim.renk}}-700 lg:mx-2 mb-2 p-2 md:w-1/4 ">
+                            <div class="lg:p-4 flex flex-col">
+                                <a href="" class="no-underline text-white text-2xl">
+                                    {{takim.adi|title}}
+                                </a>
+                                <a href="" class="no-underline text-white text-lg">
+                                    Sporcu Sayisi : {{takim.number_of_sporcu}}
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+       
+                    </div>
+
+                    <!-- /Takım bilgileri Ends Here -->
+                    
+                    
+                    <!-- Sporcu ilk 5 Starts Here -->
+                    <div class="flex flex-1 flex-col mt-6 md:flex-row lg:flex-row mx-2">
+
+                        <!-- card -->
+
+                        <div class="rounded overflow-hidden shadow bg-gray-200  w-full">
+                            <div class="px-6 py-2 border-b border-light-grey">
+                                <div class="font-bold text-xl">Son Sporcular</div>
+                            </div>
+                         
+                            <div class="table-responsive">
+                                <table class="table text-grey-darkest">
+                                    <thead class="bg-grey-dark text-white text-normal">
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Adı</th>
+                                        <th scope="col">Soyadı</th>
+                                        <th scope="col">Doğum Tarihi</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for sporcu in sporcular %}
+                                    <tr>
+                                        <th scope="row">
+                                            <a href="{% url 'sporcudetay' sporcu.s_uuid %}"><img 
+                                        {% if sporcu.resim %}
+                                        src="{{sporcu.resim.url}}"
+                                        {% else %}
+                                        src="/media/logo.jpeg"
+                                        {% endif %}
+                                              class="shadow-lg rounded-full w-12 h-12 mx-auto"></th></a>
+                                        <td>{{sporcu.adi|title}}</td>
+                                        <td>{{sporcu.soyadi|title}}</td>
+                                        <td>{{sporcu.dogum_tarihi|date:"d.m.Y" }}</td>
+
+                                    </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /card -->
+
+                    </div>
+                    <!-- /Sporcu ilk 5 Ends Here -->
+                  
+
+                </div>
+      
+{% endblock content %}

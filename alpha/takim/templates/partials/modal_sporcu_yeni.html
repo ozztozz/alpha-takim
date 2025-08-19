@@ -1,0 +1,352 @@
+
+          <!--/Modal eklemeler Tabs-->
+
+          <div class="flex flex-1 flex-col md:flex-row lg:flex-row  ">
+            <div class="border-solid  rounded  shadow-sm w-full ">
+
+                <div class="p-3">
+                    <button data-modal="formModal" class="modal-trigger bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">
+                        Kayıt ol
+                    </button>
+                </div>
+
+            </div>
+            <div id="formModal" class="modal-wrapper">
+                <div class="overlay close-modal"></div>
+                <div class="modal modal-centered">
+                    <div class="modal-content shadow-lg p-5">
+                        <div class="border-b p-2 pb-3 pt-0 mb-4">
+                           <div class="flex justify-between items-center">
+                            <img class=" m-2 h-12 w-10 rounded-lg" onclick="sidebarToggle()" src="/media/logo.jpeg" alt="">
+                                Sporcu Ekle
+                                <span class="close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">
+                                    <i class="text-gray-700"><img class="h-6" src="https://img.icons8.com/?size=100&id=71200&format=png&color=000000" alt=""></i>
+                                </span>
+                           </div>
+                        </div>
+                        <div class="w-full max-w-lg">
+                            <div class="leading-loose">
+                                <form name="sporcuForm"  action="{% url 'sporcuekle' %}" method="post" enctype="multipart/form-data"  class="max-w-xl p-2 bg-white rounded shadow-xl">
+                                    {% csrf_token %}
+                                    <p class="text-gray-800 font-medium">Sporcu Kaydet</p>
+                                    <div class="tab flex overflow-hidden h-12  bg-gray-200 shadow-lg">
+
+
+                                        <button id="btnSporcu"
+                                          class="tablinks   text-gray-600 bg-gray-300 py-2 px-6 block hover:text-blue-500 focus:outline-none  "
+                                          onclick="openCity(event, 'Sporcu')">Sporcu </button>
+                                        <button id="btnSaglik" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+                                          onclick="openCity(event, 'Saglik')">Sağlık </button>
+                                        <button id="btnYuzme" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+                                          onclick="openCity(event, 'Yuzme')">Yüzme </button>
+                                        <button id="btnUlasim" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+                                          onclick="openCity(event, 'Ulasim')">Notlar </button>
+                                      </div>
+                            <!-- /SPorcu TEmel -->
+                            <div id="Sporcu" class="tabcontent hidden p-3 h-96 shadow-lg rounded bg-gray-300  ">
+                                    <div class="flex justify-center items-center  " id="preview"></div>
+                              <div>
+                                <div class="mt-2">
+                                    {{ form.resim.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Resim</label>
+                                {{ form.resim }}
+                                </div>
+                                <div class="inline-block mt-2 w-1/2 pr-1">
+                                    {{ form.adi.errors }}
+                                    <label class="block text-sm text-gray-00" for="cus_name">Adı</label>
+                                    {{ form.adi }}
+                                </div>
+                                <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                    {{ form.soyadi.errors }}
+                                    <label class="block text-sm text-gray-00 " for="cus_name">Soyadı</label>
+                                    {{ form.soyadi }}
+                                </div>
+                                <div class="mt-2">
+                                    <label class="block text-sm text-gray-600" for="cus_email">Doğum Tarihi</label>
+                                {{ form.dogum_tarihi }}
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.okul.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Okulu</label>
+                                {{ form.okul }}
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.telefon.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Sporcu Telefon</label>
+                                {{ form.telefon }}
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.veli.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Veli Adı Soyadı</label>
+                                {{ form.veli }}
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.veli_telefon.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Veli Telefon</label>
+                                {{ form.veli_telefon }}
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.veli_eposta.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Veli E posta</label>
+                                {{ form.veli_eposta }}
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.takim.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Takımı</label>
+                                {{ form.takim }}
+                                </div>
+                            </div>
+                            <div class="flex pt-4 mx-6 justify-between">
+                                <button id="btnParis" class="tablinks text-gray-600 "
+                                onclick="openCity(event, 'Paris')"></button>
+                                <button id="btnParis" class="tablinks  text-gray-600 "
+                                onclick="openCity(event, 'Saglik')">Sağlık<img class="w-6" src="https://img.icons8.com/?size=100&id=39969&format=png&color=000000" alt=""> </button>
+                            </div>
+                        </div>
+
+                         <!-- /SPorcu TEmel Ends Here -->
+                            <!-- /SPorcu Sağlık -->
+                            <div id="Saglik" class="tabcontent hidden h-96 p-3 bg-gray-300 w-full">
+
+                                    <div>
+                                        <div class="mt-2">
+                                            {{ form.kronik_hastalik.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Herhangi bir kronik rahatsızlığı var mı? (Astım, diyabet, epilepsi vb.)</label>
+                                            {{ form.kronik_hastalik }}
+                                        </div>
+                                            <div class="mt-2">
+                                            {{ form.sakatlik_ameliyat.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve detayları)?</label>
+                                            {{ form.sakatlik_ameliyat }}
+                                        </div>
+                                            <div class="mt-2">
+                                            {{ form.kullanilan_ilac.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Düzenli kullandığı ilaçlar var mı?</label>
+                                            {{ form.kullanilan_ilac }}
+                                        </div>
+                                            <div class="mt-2">
+                                            {{ form.alerji.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Alerjik olduğu herhangi bir madde / ilaç / besin var mı?</label>
+                                            {{ form.alerji }}
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ form.kalp.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Kalp veya solunumla ilgili şikâyet yasadı mı?</label>
+                                            {{ form.kalp }}
+                                        </div>
+
+                                        <div class="mt-2">
+                                            {{ form.sosyal.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Sporcu içe dönük mü, dışa dönük mü?</label>
+                                            {{ form.sosyal }}
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ form.kalabalik.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Kalabalık ortamlarda rahat mı?</label>
+                                            {{ form.kalabalik }}
+                                        </div>
+           
+                                        <div class="mt-2">
+                                            {{ form.komut.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Komut almada zorlanır mı?</label>
+                                            {{ form.komut }}
+                                        </div>
+
+                                    </div>
+
+                                    <div class="flex pt-4 mx-6 justify-between">
+                                        <button id="btnParis" class="tablinks text-gray-600 "
+                                        onclick="openCity(event, 'Sporcu')"><img class="w-6 px-2" src="https://img.icons8.com/?size=100&id=39944&format=png&color=000000" alt=""> Sporcu</button>
+                                        <button id="btnParis" class="tablinks  text-gray-600 "
+                                        onclick="openCity(event, 'Yuzme')">Yuzme<img class="w-6 px-2" src="https://img.icons8.com/?size=100&id=39969&format=png&color=000000" alt=""> </button>
+                                    </div>
+                             </div>
+                            <!-- /SPorcu Sağlık Ends Here -->
+
+                            <!-- /SPorcu Yuzme-->
+                            <div id="Yuzme" class="tabcontent hidden h-96 p-3 bg-gray-300 w-full">
+
+                                       <div class="mt-2">
+                    {{ form.yuzme_gecmisi.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar süreyle?</label>
+                     {{ form.yuzme_gecmisi }}
+                </div>
+        <div class="mt-2">
+                    {{ form.yuzme_bilgisi.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Hangi yüzme tekniklerini biliyor? (Serbest / Sırtüstü/ Kurbağalama /
+            Kelebek)</label>
+
+
+                        <div id="id_yuzme_bilgisi" class="w-full inline-flex justify-between text-gray-700 bg-gray-200 rounded">
+                            <div>
+                            <label for="id_yuzme_bilgisi_0"><input type="checkbox" name="yuzme_bilgisi" value="Serbest" class="  text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_0">
+                        Serbest</label>
+
+                        </div>
+                        <div>
+                            <label for="id_yuzme_bilgisi_1"><input type="checkbox" name="yuzme_bilgisi" value="Sırtüstü" class=" text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_1">
+                        Sırtüstü</label>
+
+                        </div><div>
+                            <label for="id_yuzme_bilgisi_2"><input type="checkbox" name="yuzme_bilgisi" value="Kelebek" class="  text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_2">
+                        Kelebek</label>
+
+                        </div><div>
+                            <label for="id_yuzme_bilgisi_3"><input type="checkbox" name="yuzme_bilgisi" value="Kurbağalama" class="  text-gray-700 bg-gray-200 rounded" id="id_yuzme_bilgisi_3">
+                        Kurbağalama</label>
+
+                        </div>
+                        </div>
+
+
+                </div>
+                                <div class="mt-2">
+                    {{ form.derinlik.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Derin suya girebiliyor mu?</label>
+                     {{ form.derinlik }}
+                </div>
+                                <div class="mt-2">
+                    {{ form.su_korkusu.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Suya atlama / batma korkusu yaşıyor mu?</label>
+                     {{ form.su_korkusu }}
+                </div>
+                <div class="mt-2">
+                    {{ form.denizde_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Havuz dışında denizde / gölde yüzme deneyimi oldu mu?</label>
+                     {{ form.denizde_yuzme }}
+                </div>
+
+                <div class="mt-2">
+                    {{ form.neden_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Aile bu eğitimi neden aldırmak istiyor? (Hobi, öğrenme, lisansli yüzücü vb.)</label>
+                     {{ form.neden_yuzme }}
+                </div>
+                <div class="mt-2">
+                    {{ form.diger_spor.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve saatleri)</label>
+                     {{ form.diger_spor }}
+                </div>
+                <div class="mt-2">
+                    {{ form.istek_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Sporcu bu eğitime ne kadar istekli? (Aile gözlemine göre)</label>
+                     {{ form.istek_yuzme }}
+                </div>
+                <div class="mt-2">
+                    {{ form.vade_yuzme.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Ailenin uzun vadeli beklentisi nedir?</label>
+                     {{ form.vade_yuzme }}
+                </div>
+                                    <div class="flex pt-4 mx-6 justify-between">
+                                        <button id="btnParis" class="tablinks text-gray-600 "
+                                        onclick="openCity(event, 'Saglik')"><img class="w-6 px-2" src="https://img.icons8.com/?size=100&id=39944&format=png&color=000000" alt=""> Sağlık</button>
+                                        <button id="btnParis" class="tablinks  text-gray-600 "
+                                        onclick="openCity(event, 'Ulasim')">Notlar<img class="w-6 px-2" src="https://img.icons8.com/?size=100&id=39969&format=png&color=000000" alt=""> </button>
+                                    </div>
+            </div>
+
+
+                            <!-- /SPorcu Yuzme Ends Here -->
+                            <!-- /SPorcu Ulaşım-->
+                            <div id="Ulasim" class="tabcontent hidden h-96 p-3 bg-gray-300 w-full">
+
+
+
+                                <div class="mt-2">
+                    {{ form.aile_not.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Ailenin özel olarak paylaşmak istediği başka bir durum var mı?</label>
+                     {{ form.aile_not }}
+                </div>
+                <div class="mt-2">
+                    {{ form.antrenor_not.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Antrenörün ilk izlenim notu </label>
+                     {{ form.antrenor_not }}
+                </div>
+                                                    <div class="flex pt-4 mx-6 justify-between">
+                                        <button id="btnParis" class="tablinks text-gray-600 "
+                                        onclick="openCity(event, 'Yuzme')"><img class="w-6 px-2" src="https://img.icons8.com/?size=100&id=39944&format=png&color=000000" alt=""> Yüzme</button>
+                                        <button id="btnParis" class="tablinks  text-gray-600 "
+                                        onclick="openCity(event, 'Yuzme')"> </button>
+                                    </div>
+            </div>
+
+
+                            <!-- /SPorcu Ulaşım Ends Here -->
+
+
+                                    <div class="mt-4">
+                                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            showResult()
+            function showResult() {
+            const input = document.getElementById('id_resim');
+            const previewEl = document.getElementById('preview');
+            input.addEventListener('input', function() {
+
+            const child = document.getElementById("img_id")
+            if (child != null) {
+                previewEl.removeChild(child);
+            }
+            
+
+            // Create URL
+            const imgURL = window.URL.createObjectURL(input.files[0]);
+            // Create image and append
+            const img = document.createElement('img');
+            img.setAttribute("id", "img_id");
+            img.src = imgURL;
+
+            previewEl.appendChild(img);
+            })
+            };
+
+
+            document.getElementById('Sporcu').style.display = "block";
+
+            function openCity(evt, cityName) {
+            evt.preventDefault();
+            document.getElementById('Sporcu').style.display = "block";
+
+
+
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+
+                tablinks[i].classList.remove('bg-gray-300');
+              }
+
+            form=document.forms["sporcuForm"];
+            let check_field=['adi','soyadi','dogum_tarihi','okul','veli','veli_telefon','veli_eposta'];
+               
+            for (const cfield of check_field) {
+                
+                if (form[cfield].value == ""){
+                document.getElementById('Sporcu').style.display = "block";
+                form[cfield].focus()
+                alert('Lütfen '+cfield +' alanını doldurunuz');
+
+                return false
+                }
+            }
+
+              document.getElementById(cityName).style.display = "block";
+
+              document.getElementById('btn' + cityName).classList.add('bg-gray-300');
+              evt.currentTarget.className += " active";
+            }
+          </script>
+    <!--/Modal eklemeler  Tabs-->

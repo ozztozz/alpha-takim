@@ -1,0 +1,94 @@
+
+          <!--/Modal saglik Tabs-->
+          
+          <div class="flex flex-1 flex-col bg-gray-300 md:flex-row lg:flex-row ">
+            <div class="mb-2  border-solid border-gray-300  rounded border shadow-sm w-full ">
+        
+                <div class="pt-3">
+                    <button data-modal="saglikFormModal" class="modal-trigger bg-gray-500 hover:bg-gray-400 text-white text-xs  py-1 px-2 rounded">
+                        Güncelle
+                    </button>
+                </div>
+        
+            </div>
+            <div id="saglikFormModal" class="modal-wrapper">
+                <div class="overlay close-modal"></div>
+                <div class="modal modal-centered">
+                    <div class="modal-content shadow-lg py-1">
+                        <div class="border-b pb-3 pt-0 mb-4">
+                           <div class="flex justify-between p-4 items-center">
+                                Sağlık Bilgileri
+                                <span class="close-modal cursor-pointer py-1 rounded-full bg-gray-100 hover:bg-gray-200">
+                                    <i ><img class="h-6 w-6" src="https://img.icons8.com/?size=100&id=121477&format=png&color=000000" alt=""></i>
+                                </span>
+                           </div>
+                        </div>
+                        <div class="w-full max-w-lg">
+                            <div class="leading-loose">
+            <form method="post" action="{%url 'sporcupdate' sporcu.s_uuid 'saglik' %}" class="max-w-xl p-4 bg-white rounded shadow-xl">
+                {% csrf_token %}     
+
+                                                    <div class="mt-2">
+                                            {{ formSaglik.kronik_hastalik.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Herhangi bir kronik rahatsızlığı var mı? (Astım, diyabet, epilepsi vb.)</label>
+                                            {{ formSaglik.kronik_hastalik }}             
+                                        </div>
+                                            <div class="mt-2">
+                                            {{ formSaglik.sakatlik_ameliyat.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve detayları)?</label>
+                                            {{ formSaglik.sakatlik_ameliyat }}             
+                                        </div>
+                                            <div class="mt-2">
+                                            {{ formSaglik.kullanilan_ilac.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Düzenli kullandığı ilaçlar var mı?</label>
+                                            {{ formSaglik.kullanilan_ilac }}             
+                                        </div>
+                                            <div class="mt-2">
+                                            {{ formSaglik.alerji.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Alerjik olduğu herhangi bir madde / ilaç / besin var mı?</label>
+                                            {{ formSaglik.alerji }}             
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ formSaglik.kalp.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Kalp veya solunumla ilgili şikâyet yasadı mı?</label>
+                                            {{ formSaglik.kalp }}             
+                                        </div>
+                  
+                                        <div class="mt-2">
+                                            {{ formSaglik.sosyal.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Sporcu içe dönük mü, dışa dönük mü?</label>
+                                            {{ formSaglik.sosyal }}             
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ formSaglik.kalabalik.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Kalabalık ortamlarda rahat mı?</label>
+                                            {{ formSaglik.kalabalik }}             
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ formSaglik.dikkat.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name"></label>
+                                            {{ formSaglik.dikkat }}             
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ formSaglik.komut.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name">Komut almada zorlanır mı?</label>
+                                            {{ formSaglik.komut }}             
+                                        </div>
+                                        <div class="mt-2">
+                                            {{ formSaglik.iliski.errors }}
+                                            <label class="block text-sm text-gray-00" for="cus_name"></label>
+                                            {{ formSaglik.iliski }}             
+                                        </div>
+                <div class="mt-4">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                </div>
+     
+            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--/Modal saglik  Tabs-->

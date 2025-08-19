@@ -1,0 +1,157 @@
+
+          <!--/Modal eklemeler Tabs-->
+          
+          <div class="flex flex-1 flex-col md:flex-row lg:flex-row  ">
+            <div class="border-solid  rounded  shadow-sm w-full ">
+        
+                <div class="p-3">
+                    <button data-modal="formModal" class="modal-trigger bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">
+                        Güncelle
+                    </button>
+                </div>
+        
+            </div>
+            <div id="formModal" class="modal-wrapper">
+                <div class="overlay close-modal"></div>
+                <div class="modal modal-centered">
+                    <div class="modal-content shadow-lg p-5">
+                        <div class="border-b p-2 pb-3 pt-0 mb-4">
+                           <div class="flex justify-between items-center">
+                                Sporcu Ekle
+                                <span class="close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">
+                                    <i class="text-gray-700"><img class="h-6" src="https://img.icons8.com/?size=100&id=71200&format=png&color=000000" alt=""></i>
+                                </span>
+                           </div>
+                        </div>
+                        <div class="w-full max-w-lg">
+                            <div class="leading-loose">
+                                <form action="{% url 'sporcupdate' sporcu.s_uuid 'temel' %}" method="post" enctype="multipart/form-data"  class="max-w-xl p-2 bg-white rounded shadow-xl">
+                                    {% csrf_token %}
+
+                            <!-- /SPorcu TEmel -->
+                            <div id="Sporcu" class="tabcontent hidden p-3 h-96 shadow-lg rounded bg-gray-300  ">
+                           
+                              <div>
+                                <div class="flex justify-center items-center " id="preview">
+                                    {% if sporcu.resim %}
+                                        <img src="{{sporcu.resim.url}}" alt="" id="img_id">
+                                    {% endif %} 
+
+                                </div>
+                                <div class="mt-2">
+                                    {{ formSporcu.resim.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Resim</label>
+                                {{ formSporcu.resim }}           
+                                </div>
+                                <div class="inline-block mt-2 w-1/2 pr-1">
+                                    {{ formSporcu.adi.errors }}
+                                    <label class="block text-sm text-gray-00" for="cus_name">Adı</label>
+                                    {{ formSporcu.adi }}             
+                                </div>
+                                <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                    {{ formSporcu.soyadi.errors }}
+                                    <label class="block text-sm text-gray-00 " for="cus_name">Soyadı</label>
+                                    {{ formSporcu.soyadi }}             
+                                </div>
+                                <div class="mt-2">
+                                    <label class="block text-sm text-gray-600" for="cus_email">Doğum Tarihi</label>
+                                {{ formSporcu.dogum_tarihi }}           
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.okul.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Okulu</label>
+                                {{ formSporcu.okul }}           
+                                </div>
+                                <div class="mt-2">
+                                    {{ formSporcu.telefon.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Sporcu Telefon</label>
+                                {{ formSporcu.telefon }}           
+                                </div>
+                                <div class="mt-2">
+                                    {{ formSporcu.veli.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Veli Adı Soyadı</label>
+                                {{ formSporcu.veli }}           
+                                </div>
+                                <div class="mt-2">
+                                    {{ form.veli_telefon.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Veli Telefon</label>
+                                {{ formSporcu.veli_telefon }}           
+                                </div> 
+                                <div class="mt-2">
+                                    {{ formSporcu.veli_eposta.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Veli E posta</label>
+                                {{ formSporcu.veli_eposta }}           
+                                </div>       
+                                <div class="mt-2">
+                                    {{ formSporcu.takim.errors }}
+                                    <label class="block text-sm text-gray-600" for="cus_email">Takımı</label>
+                                {{ formSporcu.takim }}           
+                                </div>   
+                            </div>
+
+                        </div>
+                      
+                         <!-- /SPorcu TEmel Ends Here --> 
+
+                            
+                              
+                                    <div class="mt-4">
+                                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            showResult()
+            function showResult() {
+            const input = document.getElementById('id_resim');
+            const previewEl = document.getElementById('preview');
+            input.addEventListener('input', function() {
+
+            const child = document.getElementById("img_id")
+            if (child != null) {
+                previewEl.removeChild(child);
+            }
+            
+
+            // Create URL
+            const imgURL = window.URL.createObjectURL(input.files[0]);
+            // Create image and append
+            const img = document.createElement('img');
+            img.setAttribute("id", "img_id");
+            img.src = imgURL;
+
+            previewEl.appendChild(img);
+            })
+            };
+
+
+            document.getElementById('Sporcu').style.display = "block";
+            
+           
+          
+            function openCity(evt, cityName) {
+            evt.preventDefault();
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+          
+                tablinks[i].classList.remove('bg-gray-300');
+              }
+          
+              document.getElementById(cityName).style.display = "block";
+          
+          
+              document.getElementById('btn' + cityName).classList.add('bg-gray-300');
+              evt.currentTarget.className += " active";
+            }
+          </script>
+    <!--/Modal eklemeler  Tabs-->

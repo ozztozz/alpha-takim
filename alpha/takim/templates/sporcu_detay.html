@@ -1,0 +1,236 @@
+{% extends "_base_kayit.html" %}
+
+{% block content %}
+
+
+<div class=" ">
+
+
+  
+
+  <!--Profile Tabs-->
+  <div class="w-full md:w-1/2">
+    <!--Top user 1-->
+    <div class="rounded rounded-t-lg overflow-hidden bg-gray-200 shadow ">
+      <div class="h-24 w-full overflow-hidden bg-gray-400"></div>
+      <div class="flex justify-center -mt-8">
+        <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
+          class="rounded-full h-24 w-24 border-solid border-white border-2 -mt-3">
+      </div>
+      <div class="text-center bg-gray-200 px-3 pb-6 pt-2">
+        <h3 class="text-black text-sm bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
+        <p class="mt-2 font-sans font-light text-grey-700">{{sporcu.dogum_tarihi|date:"d.m.Y" }}</p>
+        <p class="mt-2 rounded font-sans font-light bg-{{sporcu.takim.renk}}-400 text-grey-700">{{sporcu.takim.adi}}</p>
+        <p class="mt-2 rounded font-sans font-light  text-grey-700">Okul-{{sporcu.okul|title}}</p>
+      </div>
+      <div class="flex justify-center pb-3 text-grey-dark">
+        <div class="text-center mr-3 border-r pr-3">
+
+          <h2>Veli</h2>
+        </div>
+      </div>
+      <div class="flex justify-center pb-3 text-grey-dark">
+        <div class="text-center mr-3 border-r pr-3">
+
+          <span>{{sporcu.veli|title}}</span>
+        </div>
+        <div class="text-center">
+          <h2>{{sporcu.veli_telefon}}</h2>
+          <span>{{sporcu.veli_eposta}}</span>
+
+        </div>
+
+      </div>
+      <div class="flex justify-center pb-3 text-grey-dark"></div>
+{% include 'partials/modal_sporcu.html' %}
+
+      <div class="m-2 border-t-4 rounded border-gray-500">
+
+        <div class="tab flex overflow-hidden h-12  bg-gray-200 shadow-lg">
+
+
+          <button id="btnLondon"
+            class="tablinks   text-gray-600 bg-gray-300 py-2 px-6 block hover:text-blue-500 focus:outline-none  "
+            onclick="openCity(event, 'London')">Yüzme </button>
+          <button id="btnParis" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+            onclick="openCity(event, 'Paris')">Sağlık </button>
+          <button id="btnTokyo" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+            onclick="openCity(event, 'Tokyo')">Notlar </button>
+        </div>
+
+        <div id="London" class="tabcontent hidden p-3  shadow-lg rounded bg-gray-300  ">
+          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar
+                süreyle?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_gecmisi|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Hangi yüzme tekniklerini biliyor? (Serbest / Sırtüstü/
+                Kurbağalama /
+                Kelebek)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_bilgisi|default_if_none:"--"}}
+                 
+              </div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4  text-sm text-gray-600 ">- Derin suya girebiliyor mu?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.derinlik|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Suya atlama / batma korkusu yaşıyor mu?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.su_korkusu|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Havuz dışında denizde / gölde yüzme deneyimi oldu mu?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.denizde_yuzme|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Aile bu eğitimi neden aldırmak istiyor? (Hobi, öğrenme,
+                lisansli yüzücü vb.)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.neden_yuzme|default_if_none:"--"}}</div>
+            </div>
+                                    <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve saatleri)
+
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.diger_spor|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Sporcu bu eğitime ne kadar istekli? (Aile gözlemine gore)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.istek_yuzme|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin uzun vadeli beklentisi nedir?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.vade_yuzme|default_if_none:"--"}}</div>
+            </div>
+          </div>
+          {% include "partials/modal_yuzme.html" %}
+
+        </div>
+
+
+        <div id="Paris" class="tabcontent hidden p-3 bg-gray-300 w-full">
+          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Herhangi bir kronik rahatsızlığı var mı? (Astim, diyabet,
+                epilepsi vb.)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kronik_hastalik|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve
+                detayları)?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sakatlik_ameliyat|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4  text-sm text-gray-600 ">- Düzenli kullandığı ilaçlar var mı?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kullanilan_ilac|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Alerjik olduğu herhangi bir madde / ilaç / besin var mı?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.alerji|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- - Kalp veya solunumla ilgili şikâyet yasadı mı?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalp|default_if_none:"--"}}</div>
+            </div>
+                        <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Sporcu içe dönük mü, dışa dönük mü?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sosyal|default_if_none:"--"}}</div>
+            </div>
+                        <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Kalabalık ortamlarda rahat mı?</div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalabalik|default_if_none:"--"}}</div>
+            </div>
+
+                        <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Komut almada zorlanır mı?
+
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.komut|default_if_none:"--"}}</div>
+            </div>
+
+          </div>
+          {% include "partials/modal_saglik.html" %}
+        </div>
+
+
+
+        <div id="Tokyo" class="tabcontent hidden p-3 bg-gray-300">
+          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+
+
+                        <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin özel olarak paylaşmak istediği başka bir durum var mı?
+
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.aile_not|default_if_none:"--"}}</div>
+            </div>
+                        <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Antrenörün ilk izlenim notu (gözlem sonrası doldurulabilir).
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.antrenor_not|default_if_none:"--"}}</div>
+            </div>
+
+          {% include "partials/modal_ulasim.html" %}
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+</div>
+<!--/Profile Tabs-->
+</div>
+
+
+
+
+<script>
+
+{% if kayit %}
+  alert('{{sporcu.adi|title}}'+ " aramıza hoşgeldin")
+{% endif %}
+
+  document.getElementById('London').style.display = "block";
+  evt.currentTarget.className += " active";
+
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+
+      tablinks[i].classList.remove('bg-gray-300');
+    }
+
+    document.getElementById(cityName).style.display = "block";
+
+
+    document.getElementById('btn' + cityName).classList.add('bg-gray-300');
+    evt.currentTarget.className += " active";
+  }
+</script>
+
+{% endblock content %}

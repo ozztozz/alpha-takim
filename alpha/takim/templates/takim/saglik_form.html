@@ -1,0 +1,30 @@
+{% extends "base_dashboard.html" %}
+
+{% block content %}
+
+<div class="container bg-gray-300 mx-auto h-full flex flex-1 justify-center items-center">
+    <div class="w-full max-w-lg">
+        <div class="leading-loose">
+            <form method="post" enctype="multipart/form-data"  class="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+                {% csrf_token %}
+                <p class="text-gray-800 font-medium">Sporcu Kaydet</p>
+                
+                <div class="mt-2">
+                    
+                    {{ form.okul.errors }}
+                    <label class="block text-sm text-gray-600" for="cus_email">Okulu</label>
+                   {{ form.okul }}           
+                </div>
+     
+                <div class="mt-4">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                </div>
+     
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

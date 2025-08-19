@@ -1,0 +1,87 @@
+<section class=" bg-gray-200 dark:bg-gray-900 mt-20">
+
+  <h2 class="text-base/7 font-semibold text-gray-900">Basvuru Formu</h2>
+  <p class="mt-1 text-sm/6 text-gray-600">Bilgileriniz basvuru islemleriniz disinda kullanilmayacaktir</p>
+
+  <form>
+    {% csrf_token %}
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-2">
+        {{ form.veli.errors }}
+        <label for="{{ form.veli.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Veli Adi
+          Soyadi</label>
+        {{ form.veli }}
+      </div>
+      <div class="sm:col-span-4"> </div>
+
+      <div class="sm:col-span-2">
+        {{ form.adi.errors }}
+        <label for="{{ form.adi.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Adi Soyadi</label>
+        {{ form.adi }}
+      </div>
+      <div class="sm:col-span-4"> </div>
+
+
+      <div class="sm:col-span-2">
+        {{ form.dogum_tarihi.errors }}
+        <label for="{{ form.dogum_tarihi.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Dogum
+          Tarihi</label>
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+          </svg>
+        </div>
+
+        <input datepicker id="{{ form.dogum_tarihi.id_for_label }}" name="dogum_tarihi" type="datetime"
+          class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Tarih Secin">
+      </div>
+
+
+      <div class="sm:col-span-2">
+        {{ form.boy.errors }}
+        <label for="{{ form.boy.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Boy (cm)</label>
+        {{ form.boy }}
+      </div>
+
+      <div class="sm:col-span-2">
+        {{ form.kilo.errors }}
+        <label for="{{ form.kilo.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Kilo (kg)</label>
+        {{ form.kilo }}
+      </div>
+
+      <div class="sm:col-span-2">
+        {{ form.ayak.errors }}
+        <label for="{{ form.ayak.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Ayak
+          Numarasi</label>
+        {{ form.ayak }}
+      </div>
+
+      <div class="relative">
+        <label for="{{ form.phone_number.id_for_label }}" class="block text-sm/6 font-medium text-gray-900">Ayak
+          Numarasi</label>
+        <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+          <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 19 18">
+            <path
+              d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
+          </svg>
+        </div>
+        <input type="text" name="phone_number" id="{{ form.phone_number.id_for_label }}"
+          aria-describedby="helper-text-explanation"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+      </div>
+
+    </div>
+  </form>
+
+
+
+
+
+
+
+</section>

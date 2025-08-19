@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+
+
+{% include "partials/landing/animation.html" %}
+
+{% include "partials/landing/block_branslar.html" %}
+{% include "partials/landing/block_antrenor.html" %}
+{% include "partials/landing/block_blog.html" %}
+{% include "partials/landing/footer.html" %}
+
+
+
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<script>
+    const sr = ScrollReveal({
+        distance: '60px',
+        duration: 2000,
+        delay: 400,
+        // reset: true
+    })
+    sr.reveal(`#slogan`, { origin: 'left', opacity: 0.8 });
+    sr.reveal(`#logo`, { scale: 0.75, duration: 4000 });
+    sr.reveal(`.basvuru_button`, { scale: 0.9, duration: 2000 });
+    sr.reveal(`#logo`, { origin: 'top' });
+    sr.reveal(`.brans__card`, { origin: 'bottom', duration: 1000, });
+    sr.reveal(`.blog__left`, { origin: 'left', duration: 1000, });
+    sr.reveal(`.blog__right`, { origin: 'right', duration: 1000, });
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+
+
+
+<!--/Modal yuzme Tabs-->
+          
+          <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+            <div class="mb-2   ">
+        
+                <div class="pt-3">
+                    <button data-modal="ulasimFormModal" class="modal-trigger bg-gray-500 hover:bg-gray-400 text-white text-xs  py-1 px-2 rounded">
+                        Güncelle
+                    </button>
+                </div>
+        
+            </div>
+            <div id="ulasimFormModal" class="modal-wrapper">
+                <div class="overlay close-modal"></div>
+                <div class="modal modal-centered">
+                    <div class="modal-content shadow-lg py-1">
+                        <div class="border-b pb-3 pt-0 mb-4">
+                           <div class="flex justify-between p-4 items-center">
+                            <p class="text-gray-800 font-medium">Yüzme Bilgileri</p>
+                                <span class="close-modal cursor-pointer py-1 rounded-full bg-gray-100 hover:bg-gray-200">
+                                    <i ><img class="h-6 w-6" src="https://img.icons8.com/?size=100&id=121477&format=png&color=000000" alt=""></i>
+                                </span>
+                           </div>
+                        </div>
+                        <div class="w-full max-w-lg">
+                            <div class="leading-loose">
+            <form method="post" action="{%url 'sporcupdate' sporcu.s_uuid 'ulasim' %}" class="max-w-xl m-4 p-4 bg-white rounded shadow-xl">
+                {% csrf_token %}
+                
+ 
+                <div class="mt-2">
+                    {{ formUlasim.ulasim.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name"></label>
+                     {{ formUlasim.ulasim }}             
+                </div>
+                                <div class="mt-2">
+                    {{ formUlasim.katilim.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name"></label>
+                     {{ formUlasim.katilim }}             
+                </div>
+                                <div class="mt-2">
+                    {{ formUlasim.diger_spor.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name"></label>
+                     {{ formUlasim.diger_spor }}             
+                </div>
+                                <div class="mt-2">
+                    {{ formUlasim.aile_not.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Ailenin özel olarak paylaşmak istediği başka bir durum var mi?</label>
+                     {{ formUlasim.aile_not }}             
+                </div>
+                                                <div class="mt-2">
+                    {{ formUlasim.antrenor_not.errors }}
+                    <label class="block text-sm text-gray-00" for="cus_name">Antrenörün ilk izlenim notu .</label>
+                     {{ formUlasim.antrenor_not }}             
+                </div>
+          
+    <div class="mt-4">
+                    <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                </div>
+     
+            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--/Modal saglik  Tabs-->

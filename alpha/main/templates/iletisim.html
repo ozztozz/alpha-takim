@@ -1,0 +1,72 @@
+<!-- templates/index.html -->
+{% extends "_base.html" %}
+
+{% block content %}
+
+
+
+<section class=" bg-gray-200 dark:bg-gray-900 mt-20 border-spacing-3">
+    <div class="grid sm:grid-cols-12 sm:gap-12">
+        <div class="  col-span-5 px-4">
+            <iframe class="w-full h-full"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3064.0200042795113!2d32.70800261208232!3d39.8289691714213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d3491eb799cc25%3A0xe078a6ac4150e4a!2zQXRsYXMgWcO8em1lIFNwb3IgS3Vsw7xiw7w!5e0!3m2!1str!2str!4v1732351914625!5m2!1str!2str"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+
+
+
+        <div class="mr-auto place-self-center col-span-7 px-4">
+            <h1 class="text-3xl leading-normal mb-2 font-bold text-gray-500 mt-2">Fk Alpha
+                Academy <br>Spor Kulübü</h1>
+            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                Atlas
+                Yüzme Spor Kulübü
+                Alacaatlı, Sinpaş İncek Blue Çarşı, 3602. Sk, 06530 Çankaya/Ankara</p>
+            <ul class="space-x-3 mt-6 mb-6 Lg:mb-0">
+                <!--instagram-->
+                <li class="inline-block">
+                    <a target="_blank" class="hover:text-gray-100" rel="noopener noreferrer"
+                        href="https://www.instagram.com/fkalphaacademy/" title="Instagram">
+
+                        <!-- <i class="fab fa-instagram fa-2x"></i> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M349.33,69.33a93.62,93.62,0,0,1,93.34,93.34V349.33a93.62,93.62,0,0,1-93.34,93.34H162.67a93.62,93.62,0,0,1-93.34-93.34V162.67a93.62,93.62,0,0,1,93.34-93.34H349.33m0-37.33H162.67C90.8,32,32,90.8,32,162.67V349.33C32,421.2,90.8,480,162.67,480H349.33C421.2,480,480,421.2,480,349.33V162.67C480,90.8,421.2,32,349.33,32Z">
+                            </path>
+                            <path fill="currentColor"
+                                d="M377.33,162.67a28,28,0,1,1,28-28A27.94,27.94,0,0,1,377.33,162.67Z">
+                            </path>
+                            <path fill="currentColor"
+                                d="M256,181.33A74.67,74.67,0,1,1,181.33,256,74.75,74.75,0,0,1,256,181.33M256,144A112,112,0,1,0,368,256,112,112,0,0,0,256,144Z">
+                            </path>
+                        </svg>
+                    </a>
+                </li><!--end instagram-->
+
+                <li class="inline-block">
+                    <a target="_blank" class="hover:text-gray-100" rel="noopener noreferrer" href="tel:05064802024"
+                        title="Instagram">
+                        <div class="flex items-center justify-center">
+                            <!-- <i class="fab fa-instagram fa-2x"></i> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                            </svg>
+                            <p>506 480 2024</p>
+                        </div>
+
+                    </a>
+                </li><!--end instagram-->
+
+            </ul>
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}

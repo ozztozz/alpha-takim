@@ -1,0 +1,118 @@
+
+          <!--/Modal eklemeler Tabs-->
+          
+          <div class="flex flex-1 flex-col md:flex-row lg:flex-row ">
+            <div class="border-solid border-gray-300  rounded border shadow-sm w-full ">
+        
+                <div class="p-3">
+                    <button data-modal="sporcuFormModal" class="modal-trigger bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Sporcu Ekle
+                    </button>
+                </div>
+        
+            </div>
+            <div id="sporcuFormModal" class="modal-wrapper">
+                <div class="overlay close-modal"></div>
+                <div class="modal modal-centered">
+                    <div class="modal-content shadow-lg p-5">
+                        <div class="border-b p-2 pb-3 pt-0 mb-4">
+                           <div class="flex justify-between items-center">
+                                Sporcu Ekle
+                                <span class="close-modal cursor-pointer px-3 py-1 rounded-full bg-gray-100 hover:bg-gray-200">
+                                    <i class="fas fa-times text-gray-700"></i>
+                                </span>
+                           </div>
+                        </div>
+                        <div class="w-full max-w-lg">
+                            <div class="leading-loose">
+                                <form action="{% url 'sporcuekle' %}" method="post" enctype="multipart/form-data"  class="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
+                                    {% csrf_token %}
+                                    <p class="text-gray-800 font-medium">Sporcu Kaydet</p>
+                                     <!-- /SPorcu TEmel -->
+                                        <div>
+                                            <div class="mt-2">
+                                                {{ sporcuform.resim.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Resim</label>
+                                            {{ sporcuform.resim }}           
+                                            </div>
+                                            <div class="inline-block mt-2 w-1/2 pr-1">
+                                                {{ sporcuform.adi.errors }}
+                                                <label class="block text-sm text-gray-00" for="cus_name">Adı</label>
+                                                {{ sporcuform.adi }}             
+                                            </div>
+                                            <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+                                                {{ sporcuform.soyadi.errors }}
+                                                <label class="block text-sm text-gray-00 " for="cus_name">Soyadı</label>
+                                                {{ sporcuform.soyadi }}             
+                                            </div>
+                                            <div class="mt-2">
+                                                <label class="block text-sm text-gray-600" for="cus_email">Doğum Tarihi</label>
+                                            {{ sporcuform.dogum_tarihi }}           
+                                            </div>
+                                            <div class="mt-2">
+                                                {{ sporcuform.okul.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Okulu</label>
+                                            {{ sporcuform.okul }}           
+                                            </div>
+                                            <div class="mt-2">
+                                                {{ sporcuform.telefon.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Telefon</label>
+                                            {{ sporcuform.telefon }}           
+                                            </div>
+                                            <div class="mt-2">
+                                                {{ sporcuform.veli.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Veli Adı Soyadı</label>
+                                            {{ sporcuform.veli }}           
+                                            </div>
+                                            <div class="mt-2">
+                                                {{ sporcuform.veli_telefon.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Veli Telefon</label>
+                                            {{ sporcuform.veli_telefon }}           
+                                            </div> 
+                                            <div class="mt-2">
+                                                {{ sporcuform.veli_eposta.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Veli E posta</label>
+                                            {{ sporcuform.veli_eposta }}           
+                                            </div>       
+                                            <div class="mt-2">
+                                                {{ sporcuform.takim.errors }}
+                                                <label class="block text-sm text-gray-600" for="cus_email">Takımı</label>
+                                            {{ sporcuform.takim }}           
+                                            </div>   
+                                        </div>
+                                     <!-- /Takım bilgileri Ends Here -->       
+                                    <div class="mt-4">
+                                        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+                                    </div>
+                         
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('London').style.display = "block";
+            evt.currentTarget.className += " active";
+          
+            function openCity(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+          
+                tablinks[i].classList.remove('bg-gray-300');
+              }
+          
+              document.getElementById(cityName).style.display = "block";
+          
+          
+              document.getElementById('btn' + cityName).classList.add('bg-gray-300');
+              evt.currentTarget.className += " active";
+            }
+          </script>
+    <!--/Modal eklemeler  Tabs-->

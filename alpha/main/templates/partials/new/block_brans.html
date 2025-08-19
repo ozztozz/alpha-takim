@@ -1,0 +1,52 @@
+
+
+<section class=" bg-gray-200 mt-10">
+
+
+    <div class="  px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+      
+        <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Branşlarımız</h2>
+            <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
+                Sporcuya özel planlanmış, uzun yıllar deneyimle geliştirilmiş programlarımız</p>
+                
+
+               
+        </div>
+
+
+
+            <div class="container max-w-screen-xl mx-auto px-4 py-6">
+    
+                <div class="grid grid-cols-1  lg:grid-cols-3 gap-4">
+                    {% for brans in brans_list %}
+                    <div class="">
+                        <div class="relative flex flex-col min-w-0 break-word w-full mb-6 shadow-lg rounded-lg bg-gray-600">
+                          <img alt="..." 
+                          src="{{brans.resim.url}}" class="w-full align-middle rounded-t-lg max-h-48">
+                          <blockquote class="relative p-8 mb-4">
+                            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="absolute left-0 w-full block" style="height: 95px; top: -94px;">
+                              <polygon points="-30,95 583,95 583,65" class="text-gray-600 fill-current"></polygon>
+                            </svg>
+                            <h4 class="text-xl font-bold text-white">
+                              {{brans.brans}}
+                            </h4>
+                            <p class="text-md font-light mt-2 text-white">
+                                {{brans.aciklama|safe}}
+                            </p>
+                          </blockquote>
+                                          
+                  <div class="flex justify-center pb-4 ">
+                    <a href="{% url 'basvuru' %}">
+                    <button type="submit" class="text-white  bg-gray-800  hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Başvuru Formu</button>
+                  </a>
+                  </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                </div>
+    
+            </div>
+
+    </div>
+</section>
