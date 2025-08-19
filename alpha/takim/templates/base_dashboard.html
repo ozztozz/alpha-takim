@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://themewagon.github.io/admin/index.html -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords"
+        content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
+    <!-- Css -->
+    <link rel="stylesheet" href="{% static 'src/takim.css' %}">
+    <link rel="stylesheet" href="{% static 'src/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'src/all.css' %}">
+    <link rel="stylesheet" href="{% static 'src/css' %}">
+
+
+
+
+    <title>Alpha Takım</title>
+</head>
+
+<body>
+    <!--Container -->
+    <div class="mx-auto bg-grey-400">
+        <!--Screen-->
+        <div class="min-h-screen flex flex-col">
+            <!--Header Section Starts Here-->
+            <header class="bg-nav ">
+                <div class="flex items-center justify-center">
+                    <div class="p-1 mx-3 inline-flex items-center justify-center">
+                        <img class=" m-2 h-12 w-10 rounded-lg" onclick="sidebarToggle()" src="/media/logo.jpeg" alt="">
+
+                        <h1 class="text-white p-3  ">Alpha Academy Yönetim</h1>
+                    </div>
+                </div>
+            </header>
+            <!--/Header-->
+
+            <div class="flex flex-1">
+
+                {% if user.is_authenticated %}
+                <!--Sidebar-->
+                <aside id="sidebar"
+                    class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+
+                    <ul class="list-reset flex flex-col">
+                        <a href="{% url 'takim' %}"
+                            class="font-sans font-hairline hover:font-normal hover:bg-white text-sm text-nav-item no-underline">
+                            <li class=" w-full h-full py-3 px-2 border-b border-light-border ">
+
+                                <img class="h-8" src="https://img.icons8.com/?size=100&id=83326&format=png&color=000000"
+                                    alt="">
+                                Anasayfa
+
+
+                            </li>
+                        </a>
+                        <a href="{% url 'takim_list' %}"
+                            class="font-sans font-hairline hover:font-normal hover:bg-white text-sm text-nav-item no-underline">
+                            <li class="w-full h-full py-3 px-2 border-b border-light-border">
+
+                                <img class="h-8"
+                                    src="https://img.icons8.com/?size=100&id=108335&format=png&color=000000" alt="">
+                                Takımlar
+
+
+                            </li>
+                        </a>
+                        <a href="{% url 'sporcular' %}"
+                            class="font-sans font-hairline hover:font-normal hover:bg-white text-sm text-nav-item no-underline">
+                            <li class="w-full h-full py-3 px-2 border-b border-light-border">
+
+                                <img class="h-8"
+                                    src="https://img.icons8.com/?size=100&id=cfNKLQSzR0jy&format=png&color=000000"
+                                    alt="">
+                                Sporcular
+
+
+                            </li>
+                        </a>
+                    </ul>
+
+                </aside>
+                <!--/Sidebar-->
+
+                {% endif %}
+
+
+
+                <!--Main-->
+                <main class="bg-white-300 flex-1 p-3 overflow-hidden">
+                    {% block content %}
+
+                    {% endblock content %}
+                </main>
+                <!--/Main-->
+            </div>
+
+            <footer class="relative bg-nav pt-8 pb-6">
+
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-wrap">
+
+                        <div class="w-full lg:w-6/12 px-4">
+                            <div class="flex flex-wrap items-top ">
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="my-2 border-gray-400" />
+                    <div class="flex flex-wrap items-center md:justify-between justify-center">
+                        <div class="w-full md:w-4/12 px-4  text-center">
+                            <div class="text-sm text-gray-600 font-semibold">
+                                <p class="d-block">Copyright © Fk Alpha Academy | All rights reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="{% static 'src/dash.js' %}"></script>
+    <script src="{% static 'src/main.js' %}"></script>
+
+
+</body>
+
+</html>
