@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from PIL import Image
 import uuid
+from django.conf import settings
 # Create your models here.
 class Takim (models.Model):
     adi=models.CharField()
@@ -88,3 +89,25 @@ class Sporcu(models.Model):
                 img = img.resize((img.width // bolen, img.height // bolen))
                 img.save(self.resim.path)
 
+
+ODEME_TURU= (
+    ("Uyelik", "Uyelik"),
+    ("MALZEME", "Malzeme"),
+)
+MALZEME_TURU= (
+    ("T-shirt", "T-shirt"),
+    ("Esofman", "Esofman"),
+    ("Bone", "Bone"),
+    ("Bere", "Bere"),
+    ("Corap", "Corap"),
+)
+
+class Odeme(models.Model):
+    sporcu=models.ForeignKey(Sporcu,on_delete=models.CASCADE)
+    odeme_turu=models.CharField(choices=ODEME_TURU)
+    malzeme_turu=models.CharField(choices=MALZEME_TURU,blank=True,null=True)
+    yil=models.IntegerField()
+    ay=models.IntegerField()
+    created=models.DateField(auto_created=True)
+    updated=models.DateField(auto_now_add=True)
+    create_user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)
