@@ -6,7 +6,7 @@
 <div class=" ">
 
 
-  
+
 
   <!--Profile Tabs-->
   <div class="w-full md:w-1/2">
@@ -38,11 +38,18 @@
           <h2>{{sporcu.veli_telefon}}</h2>
           <span>{{sporcu.veli_eposta}}</span>
 
+
+
         </div>
 
+
+
+
+
       </div>
+
       <div class="flex justify-center pb-3 text-grey-dark"></div>
-{% include 'partials/modal_sporcu.html' %}
+      {% include 'partials/modal_sporcu.html' %}
 
       <div class="m-2 border-t-4 rounded border-gray-500">
 
@@ -56,6 +63,10 @@
             onclick="openCity(event, 'Paris')">Sağlık </button>
           <button id="btnTokyo" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
             onclick="openCity(event, 'Tokyo')">Notlar </button>
+          <button id="btnOdeme" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+            onclick="openCity(event, 'Odeme')">Odemeler </button>
+          <button id="btnOdeme" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
+            onclick="openCity(event, 'Malzeme')">Malzemeler </button>
         </div>
 
         <div id="London" class="tabcontent hidden p-3  shadow-lg rounded bg-gray-300  ">
@@ -72,7 +83,7 @@
                 Kelebek)
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_bilgisi|default_if_none:"--"}}
-                 
+
               </div>
             </div>
             <div class="w-full grid grid-cols-7  pt-4">
@@ -96,8 +107,9 @@
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.neden_yuzme|default_if_none:"--"}}</div>
             </div>
-                                    <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve saatleri)
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve
+                saatleri)
 
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.diger_spor|default_if_none:"--"}}</div>
@@ -147,17 +159,17 @@
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalp|default_if_none:"--"}}</div>
             </div>
-                        <div class="w-full grid grid-cols-7  pt-4 ">
+            <div class="w-full grid grid-cols-7  pt-4 ">
               <div class="col-span-4 text-sm text-gray-600 ">- Sporcu içe dönük mü, dışa dönük mü?
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sosyal|default_if_none:"--"}}</div>
             </div>
-                        <div class="w-full grid grid-cols-7  pt-4 ">
+            <div class="w-full grid grid-cols-7  pt-4 ">
               <div class="col-span-4 text-sm text-gray-600 ">- Kalabalık ortamlarda rahat mı?</div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalabalik|default_if_none:"--"}}</div>
             </div>
 
-                        <div class="w-full grid grid-cols-7  pt-4 ">
+            <div class="w-full grid grid-cols-7  pt-4 ">
               <div class="col-span-4 text-sm text-gray-600 ">- Komut almada zorlanır mı?
 
               </div>
@@ -174,28 +186,103 @@
           <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
 
 
-                        <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin özel olarak paylaşmak istediği başka bir durum var mı?
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin özel olarak paylaşmak istediği başka bir durum
+                var mı?
 
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.aile_not|default_if_none:"--"}}</div>
             </div>
-                        <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Antrenörün ilk izlenim notu (gözlem sonrası doldurulabilir).
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Antrenörün ilk izlenim notu (gözlem sonrası
+                doldurulabilir).
               </div>
               <div class="pl-4 text-sm text-gray-600 ">{{sporcu.antrenor_not|default_if_none:"--"}}</div>
             </div>
 
-          {% include "partials/modal_ulasim.html" %}
+            {% include "partials/modal_ulasim.html" %}
+          </div>
+
         </div>
+
+
+        <div id="Odeme" class="tabcontent hidden p-3 bg-gray-300">
+          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+            <div class="overflow-x-auto">
+              <table class="table">
+                <!-- head -->
+                <thead>
+                  <tr>
+
+
+                    <th>Ay</th>
+                    <th>Yil</th>
+                    <th>Tarih</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row 1 -->
+                  {% for odeme in sporcu.odeme_set.all %}
+                  {% if odeme.odeme_turu == 'Uyelik' %}
+
+                  <tr>
+
+                    <td>{{odeme.ay}}</td>
+                    <td>{{odeme.yil}}</td>
+                    <td>{{odeme.created}}</td>
+                  </tr>
+                  {% endif %}
+                  {% endfor%}
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="Malzeme" class="tabcontent hidden p-3 bg-gray-300">
+          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+            <div class="overflow-x-auto">
+              <table class="table">
+                <!-- head -->
+                <thead>
+                  <tr>
+
+                    <th>Tur</th>
+                    <th>Ay</th>
+                    <th>Yil</th>
+                    <th>Tarih</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row 1 -->
+                  {% for odeme in sporcu.odeme_set.all %}
+                  {% if odeme.odeme_turu == 'MALZEME' %}
+                  <tr>
+                    <td>{{odeme.malzeme_turu|default_if_none:""}} </td>
+                    <td>{{odeme.ay}}</td>
+                    <td>{{odeme.yil}}</td>
+                    <td>{{odeme.created}}</td>
+                  </tr>
+                  {% endif %}
+                  {% endfor%}
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div>
+
 
       </div>
 
+
     </div>
-
-
   </div>
-</div>
 </div>
 </div>
 <!--/Profile Tabs-->
@@ -206,9 +293,9 @@
 
 <script>
 
-{% if kayit %}
-  alert('{{sporcu.adi|title}}'+ " aramıza hoşgeldin")
-{% endif %}
+  {% if kayit %}
+  alert('{{sporcu.adi|title}}' + " aramıza hoşgeldin")
+  {% endif %}
 
   document.getElementById('London').style.display = "block";
   evt.currentTarget.className += " active";

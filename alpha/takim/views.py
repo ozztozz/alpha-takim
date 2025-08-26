@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Takim,Sporcu
+from .models import Takim,Sporcu,Odeme
 from .forms import FormSporcu,FormTakim,FormSaglik,FormYuzme,FormSporcuFull,FormUlasim
 from django.views.generic import CreateView,UpdateView,DeleteView
 from django.db.models import Count
@@ -65,8 +65,6 @@ class CreateTakim(CreateView):
     model=Takim
     form_class=FormTakim
     
-
-
 def sporcu_ekle(request):
    if request.method == "POST":
        form = FormSporcuFull(request.POST,request.FILES)
@@ -77,8 +75,6 @@ def sporcu_ekle(request):
    else:
        form = FormSporcu()
    return render(request, 'partials/modal_sporcu.html', {'form': form})
-
-
 
 def updateSporcu(request,s_uuid,detay=None):
     sporcu = get_object_or_404(Sporcu, s_uuid = s_uuid)
@@ -106,10 +102,6 @@ def updateSporcu(request,s_uuid,detay=None):
 
     return render(request,'partials/modal_sporcu.html',{'sporcuform':sporcuform,'sporcu':sporcu})
 
-
-
-
-
 def sporcukayit(request):
     form=FormSporcuFull
     s_uuid=request.COOKIES.get('s_uuid')
@@ -118,8 +110,6 @@ def sporcukayit(request):
     else:
         return render(request,'sporcu_kayit.html',{'form':form})
     
-
-
 def saglik_ekle(request):
    if request.method == "POST":
        form = FormSporcu(request.POST,request.FILES)
@@ -131,3 +121,4 @@ def saglik_ekle(request):
    else:
        form = FormSporcu()
    return render(request, 'takim/sporcu_form.html', {'form': form})
+

@@ -111,3 +111,6 @@ class Odeme(models.Model):
     created=models.DateField(auto_created=True)
     updated=models.DateField(auto_now_add=True)
     create_user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)
+
+    def __str__(self):
+        return self.sporcu.adi+'-'+str(self.created)+'-'+str(self.odeme_turu)
