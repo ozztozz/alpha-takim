@@ -102,15 +102,35 @@ MALZEME_TURU= (
     ("Corap", "Corap"),
 )
 
+
+AYLAR= (
+    (1, "Ocak"),
+    (2, "Şubat"),
+    (3, "Mart"),
+    (4, "Nisan"),
+    (5, "Mayıs"),
+    (6, "Haziran"),
+    (7, "Temmuz"),
+    (8, "Ağustos"),
+    (9, "Eylül"),
+    (10, "Ekim"),
+    (11, "Kasım"),
+    (12, "Aralık"),
+
+)
+
 class Odeme(models.Model):
     sporcu=models.ForeignKey(Sporcu,on_delete=models.CASCADE)
     odeme_turu=models.CharField(choices=ODEME_TURU)
     malzeme_turu=models.CharField(choices=MALZEME_TURU,blank=True,null=True)
     yil=models.IntegerField()
-    ay=models.IntegerField()
+    ay=models.IntegerField(choices=AYLAR)
     created=models.DateField(auto_created=True)
     updated=models.DateField(auto_now_add=True)
     create_user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)
+
+    class Meta:
+        ordering = ["-yil","-ay"]
 
     def __str__(self):
         return self.sporcu.adi+'-'+str(self.created)+'-'+str(self.odeme_turu)
