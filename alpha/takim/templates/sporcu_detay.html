@@ -70,45 +70,38 @@
     <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
       <div class="card-body">
         <h2 class="card-title">Ödeme Bilgileri</h2>
-    <ul class="list bg-base-100 rounded-box shadow-md">
-  <li class="list-row">
-    
-    <div>
-      {% if odenmeyen %}
-      <div>{{odenmeyen}}</div>
-      <div class="text-xs font-semibold opacity-60">aidatınız ödenmemiş görünüyor.
-        <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span></div>
-      {% else %}
-      <div>Ödenmemiş aidatınız bulunmamaktadır.</div>
-      <div class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
-      </div>
-         <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-      {% endif %}
-    </div>
+                  <ul class="list bg-base-100 rounded-box shadow-md">
+                <li class="list-row">
+                  
+                  <div>
+                    {% if odenmeyen %}
+                    <div class="uppercase ">{{odenmeyen}}</div>
+                    <div class="text-xs font-semibold opacity-60">aidatınız ödenmemiş görünüyor.
+                      <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span></div>
+                    {% else %}
+                    <div>Ödenmemiş aidatınız bulunmamaktadır.</div>
+                    <div class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
+                    </div>
 
-  </li>
-  
-  <li class="list-row">
-   
-    <div>
-      <div>Son ödenen aidat: <span class="font-semibold">{{son_odeme.0.get_ay_display}}</span></div>
-      <div class="text-xs uppercase font-semibold opacity-60">(Ödeme Tarihi: {{son_odeme.0.created}})</div>
-    </div>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
+                    {% endif %}
+                  </div>
 
-  </li>
-  
+                </li>
+                
+                <li class="list-row">
+                
+                  <div>
+                    <div>Son ödenen aidat: <span class="uppercase font-semibold">{{son_odeme.0.get_ay_display}}</span></div>
+                    <div class="text-xs  font-semibold opacity-60">(Ödeme Tarihi: {{son_odeme.0.created}})</div>
+                  </div>
 
-  
-</ul>
 
-        <div class="justify-end card-actions">
-          <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
-        </div>
+                </li>
+                
+
+                
+              </ul>
+
       </div>
     </div>
     <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
