@@ -20,21 +20,22 @@
   <!--Profile Tabs-->
   <div class="w-full md:w-1/2 ">
     <!--Top user 1-->
-    <div class="rounded rounded-t-lg overflow-hidden shadow ">
-      <div class="h-24 w-full overflow-hidden bg-gray-400"></div>
+    <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-xl  ">
+      <div class="h-24 w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
       <div class="flex justify-center -mt-8">
         <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
           class="rounded-full h-24 w-24 border-solid border-white border-2 -mt-3">
       </div>
-      <div class="text-center  px-3 pb-6 pt-2">
-        <h3 class="text-black text-sm bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
+      <div class="text-center   px-3 pb-6 pt-2">
+        <h3 class="text-black  bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
 
-        <p class="mt-2 rounded font-sans font-light bg-{{sporcu.takim.renk}}-400 text-grey-700">{{sporcu.takim.adi}}</p>
+        <p class="mt-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-900 bg-{{sporcu.takim.renk}}-500 ">
+          {{sporcu.takim.adi}}</p>
 
       </div>
 
       <div class="flex justify-center pb-3 text-grey-dark"></div>
-      {% include 'partials/modal_sporcu.html' %}
+
 
 
 
@@ -53,24 +54,30 @@
               {% if odenmeyen %}
 
               <div>
-                <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
+                <button class="btn btn-block h-20   flex-row bg-slate-200 rounded-lg">
+                  <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
 
-                <div class=" font-semibold opacity-60 border-b-2 border-red-300"> <span
-                    class="font-bold text-lg text-red-500">{{odenmeyen}} </span> ayi aidatınız ödenmemiş
-                  görünüyor.
-                  <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span>
-                </div>
+                  <div class=" font-semibold text-xs opacity-60 border-b-2 border-red-300"> <span
+                      class="font-bold text-lg text-red-500">{{odenmeyen}} </span> ayi aidatınız ödenmemiş
+                    görünüyor.
+                    <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span>
+                  </div>
+                </button>
+
               </div>
 
               {% else %}
               <div class="">
-                <button class="btn btn-block flex flex-row bg-slate-200 rounded-lg">
-                  <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+                <button class="btn btn-block h-20   flex-row bg-slate-200 rounded-lg">
+
+                  <img class="size-6 m-2"
+                    src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
 
                   <p>Odenmemis aidatınız bulunmamaktadır. <br>
                     <span class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
                     </span>
                   </p>
+
                 </button>
 
               </div>
@@ -78,19 +85,22 @@
 
 
             </li>
+            <div class="grid grid-cols-3">
+              {% for odeme in odemeler %}
+              <li class="list-row">
 
-            <li class="list-row">
-
-              <div>
                 <div>
-                  <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-                  <span class="uppercase font-semibold">{{son_odeme.0.get_ay_display}}</span>
+                  <div>
+                    <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+                    <span class="uppercase font-semibold">{{odeme.get_ay_display}}</span>
+                  </div>
+                  <div class="text-xs  font-light opacity-60">(Ödeme Tar: {{odeme.created}})</div>
                 </div>
-                <div class="text-xs  font-semibold opacity-60">(Ödeme Tarihi: {{son_odeme.0.created}})</div>
-              </div>
 
 
-            </li>
+              </li>
+              {% endfor %}
+            </div>
 
 
 
