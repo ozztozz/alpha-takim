@@ -48,7 +48,7 @@ def sporcudetay(request,s_uuid):
     sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
     son_odeme=Odeme.objects.filter(sporcu=sporcu,odeme_turu='Uyelik')
     bugun=date.today()
-    if son_odeme.first().ay == bugun.month:
+    if son_odeme.first().ay >= bugun.month:
         odenmeyen=None
     else:
         odenmeyen=AYLAR[bugun.month][1] 

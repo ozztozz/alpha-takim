@@ -2,127 +2,147 @@
 
 {% block style %}
 
-    
+
 <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 {% endblock style %}
-  
+
 
 {% block content %}
 
 
-<div class=" ">
+<div class="bg-gray-100 ">
 
 
 
 
   <!--Profile Tabs-->
-  <div class="w-full md:w-1/2">
+  <div class="w-full md:w-1/2 ">
     <!--Top user 1-->
-    <div class="rounded rounded-t-lg overflow-hidden bg-gray-200 shadow ">
+    <div class="rounded rounded-t-lg overflow-hidden shadow ">
       <div class="h-24 w-full overflow-hidden bg-gray-400"></div>
       <div class="flex justify-center -mt-8">
         <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
           class="rounded-full h-24 w-24 border-solid border-white border-2 -mt-3">
       </div>
-      <div class="text-center bg-gray-200 px-3 pb-6 pt-2">
+      <div class="text-center  px-3 pb-6 pt-2">
         <h3 class="text-black text-sm bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
-        <p class="mt-2 font-sans font-light text-grey-700">{{sporcu.dogum_tarihi|date:"d.m.Y" }}</p>
+
         <p class="mt-2 rounded font-sans font-light bg-{{sporcu.takim.renk}}-400 text-grey-700">{{sporcu.takim.adi}}</p>
-        <p class="mt-2 rounded font-sans font-light  text-grey-700">Okul-{{sporcu.okul|title}}</p>
-      </div>
-      <div class="flex justify-center pb-3 text-grey-dark">
-        <div class="text-center mr-3 border-r pr-3">
-
-          <h2>Veli</h2>
-        </div>
-      </div>
-      <div class="flex justify-center pb-3 text-grey-dark">
-        <div class="text-center mr-3 border-r pr-3">
-
-          <span>{{sporcu.veli|title}}</span>
-        </div>
-        <div class="text-center">
-          <h2>{{sporcu.veli_telefon}}</h2>
-          <span>{{sporcu.veli_eposta}}</span>
-
-
-
-        </div>
-
-
-
-
 
       </div>
 
       <div class="flex justify-center pb-3 text-grey-dark"></div>
       {% include 'partials/modal_sporcu.html' %}
 
-   
+
 
 
     </div>
 
 
-<div class="grid grid-cols-1 md:grid-cols-2  ">
-    <div class="card  bg-base-300 shadow  card-xs m-2 ">
-      <div class="card-body">
-        <h2 class="card-title">Ödeme Bilgileri</h2>
-                  <ul class="list bg-base-100 rounded-box shadow-md">
-                <li class="list-row">
-                  
-                  <div>
-                    {% if odenmeyen %}
-                    <div class="uppercase ">{{odenmeyen}}</div>
-                    <div class="text-xs font-semibold opacity-60">aidatınız ödenmemiş görünüyor.
-                      <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span></div>
-                    {% else %}
-                    <div>Ödenmemiş aidatınız bulunmamaktadır.</div>
-                    <div class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
-                    </div>
-
-                    {% endif %}
-                  </div>
-
-                </li>
-                
-                <li class="list-row">
-                
-                  <div>
-                    <div>Son ödenen aidat: <span class="uppercase font-semibold">{{son_odeme.0.get_ay_display}}</span></div>
-                    <div class="text-xs  font-semibold opacity-60">(Ödeme Tarihi: {{son_odeme.0.created}})</div>
-                  </div>
+    <div class="  ">
+      <div class="card border border-gray-300 shadow-xl  card-xs mt-4  ">
+        <div class="card-body ">
+          <h2 class="card-title text-gray-500 ">ÖDEMELER</h2>
+          <ul class="list ">
+            <li class="list-row ">
 
 
-                </li>
-                
+              {% if odenmeyen %}
 
-                
-              </ul>
+              <div>
+                <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
 
+                <div class=" font-semibold opacity-60 border-b-2 border-red-300"> <span
+                    class="font-bold text-lg text-red-500">{{odenmeyen}} </span> ayi aidatınız ödenmemiş
+                  görünüyor.
+                  <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span>
+                </div>
+              </div>
+
+              {% else %}
+              <div class="">
+                <button class="btn btn-block flex flex-row bg-slate-200 rounded-lg">
+                  <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+
+                  <p>Odenmemis aidatınız bulunmamaktadır. <br>
+                    <span class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
+                    </span>
+                  </p>
+                </button>
+
+              </div>
+              {% endif %}
+
+
+            </li>
+
+            <li class="list-row">
+
+              <div>
+                <div>
+                  <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+                  <span class="uppercase font-semibold">{{son_odeme.0.get_ay_display}}</span>
+                </div>
+                <div class="text-xs  font-semibold opacity-60">(Ödeme Tarihi: {{son_odeme.0.created}})</div>
+              </div>
+
+
+            </li>
+
+
+
+          </ul>
+
+        </div>
       </div>
-    </div>
-    <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
-      <div class="card-body">
-        <h2 class="card-title">Kişisel Bilgiler</h2>
-        <p>Kişisel Bilgiler</p>
-        <div class="justify-end card-actions">
-          <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
+      <div class="card   shadow  card-xs mt-6">
+        <div class="card-body">
+          <h2 class="card-title">Kişisel Bilgiler</h2>
+          <div class="text-center  px-3 pt-2">
+
+            <p class="  text-grey-dark">{{sporcu.dogum_tarihi|date:"d.m.Y" }}</p>
+
+            </p>
+            <p class=" rounded   text-grey-dark">Okul-{{sporcu.okul|title}}</p>
+          </div>
+          <div class="flex justify-center text-grey-dark">
+            <div class="text-center mr-3  pr-3">
+
+              <h2>Veli</h2>
+            </div>
+          </div>
+          <div class="flex justify-center text-grey-dark">
+            <div class="text-center mr-3 border-r pr-3">
+
+              <span>{{sporcu.veli|title}}</span>
+            </div>
+            <div class="text-center">
+              <h2>{{sporcu.veli_telefon}}</h2>
+              <span>{{sporcu.veli_eposta}}</span>
+
+
+
+            </div>
+          </div>
+
+          <div class="justify-end card-actions">
+            <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
+          </div>
+        </div>
+      </div>
+      <div class="card   shadow  card-xs mt-2">
+        <div class="card-body">
+          <h2 class="card-title">Son Yarışlar</h2>
+          <p>Son yarışlar</p>
+          <div class="justify-end card-actions">
+            <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
-      <div class="card-body">
-        <h2 class="card-title">Son Yarışlar</h2>
-        <p>Son yarışlar</p>
-        <div class="justify-end card-actions">
-          <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
-        </div>
-      </div>
-    </div>
-</div>
 
 
 
