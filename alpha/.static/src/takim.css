@@ -98,6 +98,10 @@
 .table {
   display: table;
 }
+.size-\[1\.2em\] {
+  width: 1.2em;
+  height: 1.2em;
+}
 .h-2\/5 {
   height: calc(2/5 * 100%);
 }
@@ -330,6 +334,9 @@
 }
 .opacity-40 {
   opacity: 40%;
+}
+.opacity-60 {
+  opacity: 60%;
 }
 .outline {
   outline-style: var(--tw-outline-style);

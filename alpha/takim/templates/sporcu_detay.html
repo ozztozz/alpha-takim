@@ -1,5 +1,14 @@
 {% extends "_base_kayit.html" %}
 
+{% block style %}
+
+    
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+{% endblock style %}
+  
+
 {% block content %}
 
 
@@ -51,241 +60,97 @@
       <div class="flex justify-center pb-3 text-grey-dark"></div>
       {% include 'partials/modal_sporcu.html' %}
 
-      <div class="m-2 border-t-4 rounded border-gray-500">
-
-        <div class="tab flex overflow-hidden h-12  bg-gray-200 shadow-lg">
-
-
-          <button id="btnLondon"
-            class="tablinks   text-gray-600 bg-gray-300 py-2 px-6 block hover:text-blue-500 focus:outline-none  "
-            onclick="openCity(event, 'London')">Yüzme </button>
-          <button id="btnParis" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
-            onclick="openCity(event, 'Paris')">Sağlık </button>
-          <button id="btnTokyo" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
-            onclick="openCity(event, 'Tokyo')">Notlar </button>
-          <button id="btnOdeme" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
-            onclick="openCity(event, 'Odeme')">Odemeler </button>
-          <button id="btnOdeme" class="tablinks  text-gray-600 py-2 px-6 block hover:text-blue-500 focus:outline-none"
-            onclick="openCity(event, 'Malzeme')">Malzemeler </button>
-        </div>
-
-        <div id="London" class="tabcontent hidden p-3  shadow-lg rounded bg-gray-300  ">
-          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
-            <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar
-                süreyle?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_gecmisi|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Hangi yüzme tekniklerini biliyor? (Serbest / Sırtüstü/
-                Kurbağalama /
-                Kelebek)
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_bilgisi|default_if_none:"--"}}
-
-              </div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4">
-              <div class="col-span-4  text-sm text-gray-600 ">- Derin suya girebiliyor mu?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.derinlik|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Suya atlama / batma korkusu yaşıyor mu?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.su_korkusu|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Havuz dışında denizde / gölde yüzme deneyimi oldu mu?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.denizde_yuzme|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Aile bu eğitimi neden aldırmak istiyor? (Hobi, öğrenme,
-                lisansli yüzücü vb.)
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.neden_yuzme|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve
-                saatleri)
-
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.diger_spor|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Sporcu bu eğitime ne kadar istekli? (Aile gözlemine gore)
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.istek_yuzme|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin uzun vadeli beklentisi nedir?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.vade_yuzme|default_if_none:"--"}}</div>
-            </div>
-          </div>
-          {% include "partials/modal_yuzme.html" %}
-
-        </div>
-
-
-        <div id="Paris" class="tabcontent hidden p-3 bg-gray-300 w-full">
-          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
-            <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Herhangi bir kronik rahatsızlığı var mı? (Astim, diyabet,
-                epilepsi vb.)
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kronik_hastalik|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve
-                detayları)?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sakatlik_ameliyat|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4">
-              <div class="col-span-4  text-sm text-gray-600 ">- Düzenli kullandığı ilaçlar var mı?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kullanilan_ilac|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Alerjik olduğu herhangi bir madde / ilaç / besin var mı?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.alerji|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- - Kalp veya solunumla ilgili şikâyet yasadı mı?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalp|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Sporcu içe dönük mü, dışa dönük mü?
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sosyal|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Kalabalık ortamlarda rahat mı?</div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalabalik|default_if_none:"--"}}</div>
-            </div>
-
-            <div class="w-full grid grid-cols-7  pt-4 ">
-              <div class="col-span-4 text-sm text-gray-600 ">- Komut almada zorlanır mı?
-
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.komut|default_if_none:"--"}}</div>
-            </div>
-
-          </div>
-          {% include "partials/modal_saglik.html" %}
-        </div>
-
-
-
-        <div id="Tokyo" class="tabcontent hidden p-3 bg-gray-300">
-          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
-
-
-            <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin özel olarak paylaşmak istediği başka bir durum
-                var mı?
-
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.aile_not|default_if_none:"--"}}</div>
-            </div>
-            <div class="w-full grid grid-cols-7 pt-4">
-              <div class="col-span-4 text-sm text-gray-600 ">- Antrenörün ilk izlenim notu (gözlem sonrası
-                doldurulabilir).
-              </div>
-              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.antrenor_not|default_if_none:"--"}}</div>
-            </div>
-
-            {% include "partials/modal_ulasim.html" %}
-          </div>
-
-        </div>
-
-
-        <div id="Odeme" class="tabcontent hidden p-3 bg-gray-300">
-          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
-            <div class="overflow-x-auto">
-              <table class="table">
-                <!-- head -->
-                <thead>
-                  <tr>
-
-
-                    <th>Ay</th>
-                    <th>Yil</th>
-                    <th>Tarih</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- row 1 -->
-                  {% for odeme in sporcu.odeme_set.all %}
-                  {% if odeme.odeme_turu == 'Uyelik' %}
-
-                  <tr>
-
-                    <td>{{odeme.ay}}</td>
-                    <td>{{odeme.yil}}</td>
-                    <td>{{odeme.created}}</td>
-                  </tr>
-                  {% endif %}
-                  {% endfor%}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div id="Malzeme" class="tabcontent hidden p-3 bg-gray-300">
-          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
-            <div class="overflow-x-auto">
-              <table class="table">
-                <!-- head -->
-                <thead>
-                  <tr>
-
-                    <th>Tur</th>
-                    <th>Ay</th>
-                    <th>Yil</th>
-                    <th>Tarih</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- row 1 -->
-                  {% for odeme in sporcu.odeme_set.all %}
-                  {% if odeme.odeme_turu == 'MALZEME' %}
-                  <tr>
-                    <td>{{odeme.malzeme_turu|default_if_none:""}} </td>
-                    <td>{{odeme.ay}}</td>
-                    <td>{{odeme.yil}}</td>
-                    <td>{{odeme.created}}</td>
-                  </tr>
-                  {% endif %}
-                  {% endfor%}
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
+   
 
 
     </div>
-  </div>
+
+
+<div class="grid grid-cols-1 md:grid-cols-2  ">
+    <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
+      <div class="card-body">
+        <h2 class="card-title">Ödeme Bilgileri</h2>
+    <ul class="list bg-base-100 rounded-box shadow-md">
+  <li class="list-row">
+    
+    <div>
+      {% if odenmeyen %}
+      <div>{{odenmeyen}}</div>
+      <div class="text-xs font-semibold opacity-60">aidatınız ödenmemiş görünüyor.
+        <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span></div>
+      {% else %}
+      <div>Ödenmemiş aidatınız bulunmamaktadır.</div>
+      <div class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
+      </div>
+         <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+    </button>
+      {% endif %}
+    </div>
+
+  </li>
+  
+  <li class="list-row">
+   
+    <div>
+      <div>Son ödenen aidat: <span class="font-semibold">{{son_odeme.0.get_ay_display}}</span></div>
+      <div class="text-xs uppercase font-semibold opacity-60">(Ödeme Tarihi: {{son_odeme.0.created}})</div>
+    </div>
+    <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
+    </button>
+
+  </li>
+  
+
+  
+</ul>
+
+        <div class="justify-end card-actions">
+          <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
+        </div>
+      </div>
+    </div>
+    <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
+      <div class="card-body">
+        <h2 class="card-title">Kişisel Bilgiler</h2>
+        <p>Kişisel Bilgiler</p>
+        <div class="justify-end card-actions">
+          <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
+        </div>
+      </div>
+    </div>
+    <div class="card  bg-gray-200 shadow  card-xs mt-2 ">
+      <div class="card-body">
+        <h2 class="card-title">Son Yarışlar</h2>
+        <p>Son yarışlar</p>
+        <div class="justify-end card-actions">
+          <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
+        </div>
+      </div>
+    </div>
 </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</div>
+
+
+
+
 </div>
 <!--/Profile Tabs-->
+
+
+
+
 </div>
 
 

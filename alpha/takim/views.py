@@ -1,10 +1,11 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Takim,Sporcu,Odeme
+from .models import Takim,Sporcu,Odeme,AYLAR
 from .forms import FormSporcu,FormTakim,FormSaglik,FormYuzme,FormSporcuFull,FormUlasim
 from django.views.generic import CreateView,UpdateView,DeleteView
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import ExtractYear
+from datetime import date
 
 # Create your views here.
 
@@ -45,6 +46,13 @@ def modal(request):
 
 def sporcudetay(request,s_uuid):
     sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
+    son_odeme=Odeme.objects.filter(sporcu=sporcu,odeme_turu='Uyelik')
+    bugun=date.today()
+    if son_odeme.first().ay >= bugun.month:
+        odenmeyen=None
+    else:
+        odenmeyen=AYLAR[bugun.month][1] 
+
     formSaglik=FormSaglik(instance=sporcu)
     formYuzme=FormYuzme(instance=sporcu)
     formSporcu=FormSporcu(instance=sporcu)
@@ -56,7 +64,12 @@ def sporcudetay(request,s_uuid):
         kayit=False
 
 
-    response=render(request, 'sporcu_detay.html',{'sporcu':sporcu,'formSaglik':formSaglik,'formYuzme':formYuzme,'formSporcu':formSporcu,'formUlasim':formUlasim,'kayit':kayit})
+    response=render(request, 'sporcu_detay.html',{'sporcu':sporcu,
+                                                  'son_odeme':son_odeme,
+                                                  'odenmeyen':odenmeyen,
+                                                  'formSaglik':formSaglik,'formYuzme':formYuzme,
+                                                  'formSporcu':formSporcu,'formUlasim':formUlasim,
+                                                  'kayit':kayit})
     response.set_cookie('s_uuid',sporcu.s_uuid)
     
     return response
