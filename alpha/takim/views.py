@@ -45,9 +45,20 @@ def modal(request):
 
 
 def sporcudetay(request,s_uuid):
+    bugun=date.today()
     sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
     odemeler=Odeme.objects.filter(sporcu=sporcu,odeme_turu='Uyelik')
-    bugun=date.today()
+    odenmemis=False
+    odeme_check=[]
+    for ay in AYLAR:
+        if ay[0]<=bugun.month:
+            if odemeler.filter(ay=ay[0]):
+                odeme_check.append({'ay':ay[1],'odeme_tarihi':odemeler.filter(ay=ay[0]).first().created})
+            else:
+                odeme_check.append({'ay':ay[1],'odeme_tarihi':None})
+                odenmemis=True
+    odeme_check.reverse()
+    
     if odemeler.filter(ay=bugun.month):
         odenmeyen=None
     else:
@@ -65,8 +76,8 @@ def sporcudetay(request,s_uuid):
 
 
     response=render(request, 'sporcu_detay.html',{'sporcu':sporcu,
-                                                  'odemeler':odemeler,
-                                                  'odenmeyen':odenmeyen,
+                                                  'odenmemis':odenmemis,
+                                                  'odeme_check':odeme_check,
                                                   'formSaglik':formSaglik,'formYuzme':formYuzme,
                                                   'formSporcu':formSporcu,'formUlasim':formUlasim,
                                                   'kayit':kayit})

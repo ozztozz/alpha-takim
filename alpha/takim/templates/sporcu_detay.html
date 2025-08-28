@@ -14,179 +14,189 @@
 
 
 
-  <!--Profile Tabs-->
-  <div class="w-full md:w-1/2 ">
-    <!--Top user 1-->
-    <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-lg   ">
-      <div class="h-16  shadow-xl w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
-      <div class="flex justify-center -mt-8">
-        <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
-          class="rounded-full h-24 w-24 border-solid border-{{sporcu.takim.renk}}-400 border-5 shadow-xl  -mt-4">
-      </div>
-      <div class="text-center   px-3 pb-6 py-2">
-        <h3 class="text-gray-600  font-bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
-
-        <p class="mt-2 py-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-200 bg-{{sporcu.takim.renk}}-500 ">
-          {{sporcu.takim.adi}} Takım</p>
-
-      </div>
+<!--Profile Tabs-->
+<div class="w-full md:w-1/2 ">
+  <!--Top user 1-->
+  <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-lg   ">
+    <div class="h-16  shadow-xl w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
+    <div class="flex justify-center -mt-8">
+      <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
+        class="rounded-full h-24 w-24 border-solid border-{{sporcu.takim.renk}}-400 border-5 shadow-xl  -mt-4">
     </div>
+    <div class="text-center   px-3 pb-6 py-2">
+      <h3 class="text-gray-600  font-bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
 
-    <!--Odemeler-->
-    <div class=" bg-base-200  ">
-      <div class="card border border-gray-300 shadow-lg  card-xs mt-4  ">
-        <div class="card-body ">
-          <h2 class="card-title text-gray-500 "><img class="size-6" src="https://img.icons8.com/?size=100&id=WSjGB0O5Cs0c&format=png&color=000000" alt=""> ÖDEMELER</h2>
-          <ul class="list ">
-            <li class="list-row ">
+      <p class="mt-2 py-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-200 bg-{{sporcu.takim.renk}}-500 ">
+        {{sporcu.takim.adi}} Takım</p>
+
+    </div>
+  </div>
+
+  <!--Odemeler-->
+  <div class=" bg-base-200  ">
+    <div class="card border border-gray-300 shadow-lg  card-xs mt-4  ">
+      <div class="card-body ">
+        <h2 class="card-title text-gray-500 "><img class="size-6"
+            src="https://img.icons8.com/?size=100&id=WSjGB0O5Cs0c&format=png&color=000000" alt=""> ÖDEMELER</h2>
+        <ul class="list ">
+          <li class="list-row ">
 
 
-              {% if odenmeyen %}
+            {% if odenmemis %}
 
-              <div>
-                <button class="btn btn-block h-20   flex-row bg-slate-200 rounded-lg">
+            <div>
+              <button class="btn btn-block h-20   flex-row bg-slate-200 rounded-lg">
+
                   <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
 
-                  <div class=" font-semibold text-xs opacity-60 border-b-2 border-red-300"> <span
-                      class="font-bold text-lg text-red-500">{{odenmeyen}} </span> ayı aidatınız ödenmemiş
-                    görünüyor.
-                    <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span>
-                  </div>
-                </button>
+                <p class="text-xs">Ödenmemiş aidatınız bulunmaktadır. <br>
+                  <span class="text-xs font-semibold opacity-60">Odeme yaptiysaniz bu uyariyi dikkate almayiniz.
+                  </span>
+                </p>
 
+              </button>
+
+            </div>
+
+            {% else %}
+            <div class="">
+              <button class="btn btn-block h-20   flex-row bg-slate-200 rounded-lg">
+
+                <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+
+                <p class="text-xs">Ödenmemiş aidatınız bulunmamaktadır. <br>
+                  <span class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
+                  </span>
+                </p>
+
+              </button>
+
+            </div>
+            {% endif %}
+
+
+          </li>
+
+          <div class="grid grid-cols-3">
+            {% for odeme in odeme_check %}
+            <li class="list-row">
+
+              <div>
+                <div>
+                  {% if odeme.odeme_tarihi %}
+                  <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+                  <span class=" text-sm font-semibold text-gray-600">{{odeme.ay|upper}}</span>
+                </div>
+                <div class="text-xs  font-light opacity-60">(Ödeme Tar: {{odeme.odeme_tarihi}})</div>
               </div>
-
               {% else %}
-              <div class="">
-                <button class="btn btn-block h-20   flex-row bg-slate-200 rounded-lg">
-
-                  <img class="size-6 m-2"
-                    src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-
-                  <p class="text-xs">Ödenmemiş aidatınız bulunmamaktadır. <br>
-                    <span class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
-                    </span>
-                  </p>
-
-                </button>
-
+                <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
+                  <span class=" text-sm font-semibold text-gray-600">{{odeme.ay|upper}}</span>
+                </div>
+          
               </div>
+
               {% endif %}
 
 
             </li>
-            <div class="grid grid-cols-3">
-              {% for odeme in odemeler %}
-              <li class="list-row">
-
-                <div>
-                  <div>
-                    <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-                    <span class=" text-sm font-semibold text-gray-600">{{odeme.get_ay_display|upper}}</span>
-                  </div>
-                  <div class="text-xs  font-light opacity-60">(Ödeme Tar: {{odeme.created}})</div>
-                </div>
-
-
-              </li>
-              {% endfor %}
-            </div>
+            {% endfor %}
+          </div>
 
 
 
-          </ul>
+        </ul>
 
-        </div>
       </div>
     </div>
- <!--Kişisel Bİlgiler-->
-    <div class=" bg-base-200 ">
-      <div class="card border border-gray-300 shadow-lg   card-xs mt-4  ">
-        <div class="card-body">
-           <h2 class="card-title text-gray-500 "> <img class="size-6" src="https://img.icons8.com/?size=100&id=WRsH9avTiko8&format=png&color=000000" alt=""> KİŞİSEL BİLGİLER</h2>
-         
-                <button class="btn border-0 btn-block">
-                  <div class="flex flex-row">
-                 <img class="size-6 mr-3" src="https://img.icons8.com/?size=100&id=49960&format=png&color=000000" alt="">
+  </div>
+  <!--Kişisel Bİlgiler-->
+  <div class=" bg-base-200 ">
+    <div class="card border border-gray-300 shadow-lg   card-xs mt-4  ">
+      <div class="card-body">
+        <h2 class="card-title text-gray-500 "> <img class="size-6"
+            src="https://img.icons8.com/?size=100&id=WRsH9avTiko8&format=png&color=000000" alt=""> KİŞİSEL BİLGİLER</h2>
+
+        <button class="btn border-0 btn-block">
+          <div class="flex flex-row">
+            <img class="size-6 mr-3" src="https://img.icons8.com/?size=100&id=49960&format=png&color=000000" alt="">
             <p class="  text-grey-dark">{{sporcu.dogum_tarihi|date:"d.m.Y" }}</p>
-              </div>
-                </button>
-                <button class="btn border-0 btn-block">
-                  <div class="flex flex-row">
-        <img class="size-6 mr-3" src="https://img.icons8.com/?size=100&id=13183&format=png&color=000000" alt="">
-            <p class="  text-grey-dark">{{sporcu.okul|title}}</p>
-              </div>
-                </button>
-    
-        
-          <div class="flex justify-center text-grey-dark">
-            <div class="text-center mr-3  pr-3">
-                              <button class="btn border-0 btn-block">
-                  <div class="flex flex-row">
-            <p class="text-gray-500 ">Veli</p>
-              </div>
-                </button>
-
-            </div>
           </div>
-          <div class="flex justify-center text-grey-dark">
-            <div class="text-center text-grey-dark font-serif mr-3 border-r pr-3">
+        </button>
+        <button class="btn border-0 btn-block">
+          <div class="flex flex-row">
+            <img class="size-6 mr-3" src="https://img.icons8.com/?size=100&id=13183&format=png&color=000000" alt="">
+            <p class="  text-grey-dark">{{sporcu.okul|title}}</p>
+          </div>
+        </button>
 
-              <span>{{sporcu.veli|title}}</span>
-            </div>
-            <div class="text-center text-grey-dark font-serif">
-              <h2>{{sporcu.veli_telefon}}</h2>
-              <span>{{sporcu.veli_eposta}}</span>
-            </div>
+
+        <div class="flex justify-center text-grey-dark">
+          <div class="text-center mr-3  pr-3">
+            <button class="btn border-0 btn-block">
+              <div class="flex flex-row">
+                <p class="text-gray-500 ">Veli</p>
+              </div>
+            </button>
+
+          </div>
+        </div>
+        <div class="flex justify-center text-grey-dark">
+          <div class="text-center text-grey-dark font-serif mr-3 border-r pr-3">
+
+            <span>{{sporcu.veli|title}}</span>
+          </div>
+          <div class="text-center text-grey-dark font-serif">
+            <h2>{{sporcu.veli_telefon}}</h2>
+            <span>{{sporcu.veli_eposta}}</span>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
- <!--Anrenman-->
-    <div class=" mt-6 ">
+  <!--Anrenman-->
+  <div class=" mt-6 ">
 
-          <h2 class="card-title text-sm text-gray-500 "> <img class="size-6" src="https://img.icons8.com/?size=100&id=119604&format=png&color=000000" alt="">ANTRENMAN </h2>
-          <ul class="  timeline  timeline-vertical">
-              <li>
-                <div class="timeline-start">Bugün</div>
-                <div class="timeline-middle">
-                      <img class="size-6 " src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-                </div>
-                
-                <div class="timeline-end timeline-box">
-                  
-                  <p> 06:30 Hacettepe 
-                  <br>19:30 Ayten Şaban Diri</p></div>
-                <hr />
-              </li>
-              <li class="opacity-50">
-                <hr />
-                <div class="timeline-start text-gray-400">Cumartesi</div>
-                <div class="timeline-middle ">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    class="h-5 w-5 "
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                </div>
-                       <div class="timeline-end timeline-box">
-                  
-                  <p> 06:30 Hacettepe 
-                  <br>19:30 Ayten Şaban Diri</p></div>
-                <hr />
-              </li>
+    <h2 class="card-title text-sm text-gray-500 "> <img class="size-6"
+        src="https://img.icons8.com/?size=100&id=119604&format=png&color=000000" alt="">ANTRENMAN </h2>
+    <ul class="  timeline  timeline-vertical">
+      <li>
+        <div class="timeline-start">Bugün</div>
+        <div class="timeline-middle">
+          <img class="size-6 " src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+        </div>
 
-          </ul>
+        <div class="timeline-end timeline-box">
 
-    </div>
+          <p> 06:30 Hacettepe
+            <br>19:30 Ayten Şaban Diri
+          </p>
+        </div>
+        <hr />
+      </li>
+      <li class="opacity-50">
+        <hr />
+        <div class="timeline-start text-gray-400">Cumartesi</div>
+        <div class="timeline-middle ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5 ">
+            <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="timeline-end timeline-box">
 
- </div>
+          <p> 06:30 Hacettepe
+            <br>19:30 Ayten Şaban Diri
+          </p>
+        </div>
+        <hr />
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>
 {% endblock content %}

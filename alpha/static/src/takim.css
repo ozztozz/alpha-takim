@@ -98,10 +98,6 @@
 .table {
   display: table;
 }
-.size-\[1\.2em\] {
-  width: 1.2em;
-  height: 1.2em;
-}
 .h-2\/5 {
   height: calc(2/5 * 100%);
 }
@@ -253,9 +249,17 @@
   border-style: var(--tw-border-style);
   border-width: 1px;
 }
+.border-0 {
+  border-style: var(--tw-border-style);
+  border-width: 0px;
+}
 .border-2 {
   border-style: var(--tw-border-style);
   border-width: 2px;
+}
+.border-5 {
+  border-style: var(--tw-border-style);
+  border-width: 5px;
 }
 .border-t {
   border-top-style: var(--tw-border-style);
@@ -338,6 +342,9 @@
 }
 .opacity-40 {
   opacity: 40%;
+}
+.opacity-50 {
+  opacity: 50%;
 }
 .opacity-60 {
   opacity: 60%;
