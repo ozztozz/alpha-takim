@@ -12,9 +12,6 @@
 {% block content %}
 
 
-<div class="bg-gray-100 ">
-
-
 
 
   <!--Profile Tabs-->
@@ -30,23 +27,16 @@
         <h3 class="text-gray-600  font-bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
 
         <p class="mt-2 py-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-900 bg-{{sporcu.takim.renk}}-500 ">
-          {{sporcu.takim.adi}} Takim</p>
+          {{sporcu.takim.adi}} Takım</p>
 
       </div>
-
-      <div class="flex justify-center pb-3 text-grey-dark"></div>
-
-
-
-
-
     </div>
 
-
-    <div class="  ">
+    <!--Odemeler-->
+    <div class=" bg-base-200  ">
       <div class="card border border-gray-300 shadow-xl  card-xs mt-4  ">
         <div class="card-body ">
-          <h2 class="card-title text-gray-500 ">ÖDEMELER</h2>
+          <h2 class="card-title text-gray-500 "><img class="size-6" src="https://img.icons8.com/?size=100&id=WSjGB0O5Cs0c&format=png&color=000000" alt=""> ÖDEMELER</h2>
           <ul class="list ">
             <li class="list-row ">
 
@@ -58,7 +48,7 @@
                   <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
 
                   <div class=" font-semibold text-xs opacity-60 border-b-2 border-red-300"> <span
-                      class="font-bold text-lg text-red-500">{{odenmeyen}} </span> ayi aidatınız ödenmemiş
+                      class="font-bold text-lg text-red-500">{{odenmeyen}} </span> ayı aidatınız ödenmemiş
                     görünüyor.
                     <br><span class="font-light"> Ödeme yaptıysanız bu uyarıyı dikkate almayınız.</span>
                   </div>
@@ -73,7 +63,7 @@
                   <img class="size-6 m-2"
                     src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
 
-                  <p>Odenmemis aidatınız bulunmamaktadır. <br>
+                  <p>Ödenmemiş aidatınız bulunmamaktadır. <br>
                     <span class="text-xs font-semibold opacity-60">Düzenli ödemeleriniz için teşekkür ederiz.
                     </span>
                   </p>
@@ -108,104 +98,107 @@
 
         </div>
       </div>
-      <div class="card   shadow  card-xs mt-6">
+    </div>
+ <!--Kişisel Bİlgiler-->
+    <div class=" bg-base-200 ">
+      <div class="card border border-gray-300 shadow-xl  card-xs mt-4  ">
         <div class="card-body">
-          <h2 class="card-title">Kişisel Bilgiler</h2>
-          <div class="text-center  px-3 pt-2">
-
+           <h2 class="card-title text-gray-500 "> <img class="size-6" src="https://img.icons8.com/?size=100&id=WRsH9avTiko8&format=png&color=000000" alt=""> KİŞİSEL BİLGİLER</h2>
+         
+                <button class="btn border-0 btn-block">
+                  <div class="flex flex-row">
+                 <img class="size-6 mr-3" src="https://img.icons8.com/?size=100&id=49960&format=png&color=000000" alt="">
             <p class="  text-grey-dark">{{sporcu.dogum_tarihi|date:"d.m.Y" }}</p>
-
-            </p>
-            <p class=" rounded   text-grey-dark">Okul-{{sporcu.okul|title}}</p>
-          </div>
+              </div>
+                </button>
+                <button class="btn border-0 btn-block">
+                  <div class="flex flex-row">
+        <img class="size-6 mr-3" src="https://img.icons8.com/?size=100&id=13183&format=png&color=000000" alt="">
+            <p class="  text-grey-dark">{{sporcu.okul|title}}</p>
+              </div>
+                </button>
+    
+        
           <div class="flex justify-center text-grey-dark">
             <div class="text-center mr-3  pr-3">
+                              <button class="btn border-0 btn-block">
+                  <div class="flex flex-row">
+            <p class="text-gray-500 ">Veli</p>
+              </div>
+                </button>
 
-              <h2>Veli</h2>
             </div>
           </div>
           <div class="flex justify-center text-grey-dark">
-            <div class="text-center mr-3 border-r pr-3">
+            <div class="text-center text-grey-dark font-serif mr-3 border-r pr-3">
 
               <span>{{sporcu.veli|title}}</span>
             </div>
-            <div class="text-center">
+            <div class="text-center text-grey-dark font-serif">
               <h2>{{sporcu.veli_telefon}}</h2>
               <span>{{sporcu.veli_eposta}}</span>
-
-
-
             </div>
-          </div>
-
-          <div class="justify-end card-actions">
-            <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
-          </div>
-        </div>
-      </div>
-      <div class="card   shadow  card-xs mt-2">
-        <div class="card-body">
-          <h2 class="card-title">Son Yarışlar</h2>
-          <p>Son yarışlar</p>
-          <div class="justify-end card-actions">
-            <button class="bg-gray-500 hover:bg-gray-700 text-white  py-2 px-6 rounded">Ayrıntılar</button>
           </div>
         </div>
       </div>
     </div>
 
+ <!--Anrenman-->
+    <div class=" mt-6 bg-base-200 ">
 
+          <h2 class="card-title text-gray-500 "> <img class="size-6" src="https://img.icons8.com/?size=100&id=25980&format=png&color=000000" alt="">ANTRENMAN </h2>
+          <ul class="  timeline  timeline-vertical">
+              <li>
+                <div class="timeline-start">Bugün</div>
+                <div class="timeline-middle">
+                  
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="green"
+                    class="h-5 w-5"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                
+                <div class="timeline-end timeline-box">
+                  
+                  <p> 06:30 Hacettepe 
+                  <br>19:30 Ayten Şaban Diri</p></div>
+                <hr />
+              </li>
+              <li>
+                <hr />
+                <div class="timeline-start">Cumartesi</div>
+                <div class="timeline-middle">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="h-5 w-5"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                       <div class="timeline-end timeline-box">
+                  
+                  <p> 06:30 Hacettepe 
+                  <br>19:30 Ayten Şaban Diri</p></div>
+                <hr />
+              </li>
 
-  </div>
+          </ul>
 
+    </div>
 
-
-
-
-
-</div>
-
-
-
-
-</div>
-<!--/Profile Tabs-->
-
-
-
-
-</div>
-
-
-
-
-<script>
-
-  {% if kayit %}
-  alert('{{sporcu.adi|title}}' + " aramıza hoşgeldin")
-  {% endif %}
-
-  document.getElementById('London').style.display = "block";
-  evt.currentTarget.className += " active";
-
-  function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-
-      tablinks[i].classList.remove('bg-gray-300');
-    }
-
-    document.getElementById(cityName).style.display = "block";
-
-
-    document.getElementById('btn' + cityName).classList.add('bg-gray-300');
-    evt.currentTarget.className += " active";
-  }
-</script>
-
+ </div>
 {% endblock content %}
