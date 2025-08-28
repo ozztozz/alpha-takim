@@ -17,8 +17,8 @@
   <!--Profile Tabs-->
   <div class="w-full md:w-1/2 ">
     <!--Top user 1-->
-    <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-xl  ">
-      <div class="h-16 shadow-xl w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
+    <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-lg   ">
+      <div class="h-16  shadow-xl w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
       <div class="flex justify-center -mt-8">
         <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
           class="rounded-full h-24 w-24 border-solid border-{{sporcu.takim.renk}}-400 border-5 shadow-xl  -mt-4">
@@ -26,7 +26,7 @@
       <div class="text-center   px-3 pb-6 py-2">
         <h3 class="text-gray-600  font-bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
 
-        <p class="mt-2 py-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-900 bg-{{sporcu.takim.renk}}-500 ">
+        <p class="mt-2 py-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-200 bg-{{sporcu.takim.renk}}-500 ">
           {{sporcu.takim.adi}} Takım</p>
 
       </div>
@@ -34,7 +34,7 @@
 
     <!--Odemeler-->
     <div class=" bg-base-200  ">
-      <div class="card border border-gray-300 shadow-xl  card-xs mt-4  ">
+      <div class="card border border-gray-300 shadow-lg  card-xs mt-4  ">
         <div class="card-body ">
           <h2 class="card-title text-gray-500 "><img class="size-6" src="https://img.icons8.com/?size=100&id=WSjGB0O5Cs0c&format=png&color=000000" alt=""> ÖDEMELER</h2>
           <ul class="list ">
@@ -82,7 +82,7 @@
                 <div>
                   <div>
                     <img class="size-6" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-                    <span class=" text-sm font-semibold">{{odeme.get_ay_display}}</span>
+                    <span class=" text-sm font-semibold text-gray-600">{{odeme.get_ay_display|upper}}</span>
                   </div>
                   <div class="text-xs  font-light opacity-60">(Ödeme Tar: {{odeme.created}})</div>
                 </div>
@@ -101,7 +101,7 @@
     </div>
  <!--Kişisel Bİlgiler-->
     <div class=" bg-base-200 ">
-      <div class="card border border-gray-300 shadow-xl  card-xs mt-4  ">
+      <div class="card border border-gray-300 shadow-lg   card-xs mt-4  ">
         <div class="card-body">
            <h2 class="card-title text-gray-500 "> <img class="size-6" src="https://img.icons8.com/?size=100&id=WRsH9avTiko8&format=png&color=000000" alt=""> KİŞİSEL BİLGİLER</h2>
          
@@ -144,7 +144,7 @@
     </div>
 
  <!--Anrenman-->
-    <div class=" mt-6 bg-base-200 ">
+    <div class=" mt-6 ">
 
           <h2 class="card-title text-sm text-gray-500 "> <img class="size-6" src="https://img.icons8.com/?size=100&id=119604&format=png&color=000000" alt="">ANTRENMAN </h2>
           <ul class="  timeline  timeline-vertical">
@@ -160,15 +160,15 @@
                   <br>19:30 Ayten Şaban Diri</p></div>
                 <hr />
               </li>
-              <li>
+              <li class="opacity-50">
                 <hr />
-                <div class="timeline-start">Cumartesi</div>
-                <div class="timeline-middle">
+                <div class="timeline-start text-gray-400">Cumartesi</div>
+                <div class="timeline-middle ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    class="h-5 w-5"
+                    class="h-5 w-5 "
                   >
                     <path
                       fill-rule="evenodd"
