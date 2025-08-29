@@ -125,12 +125,14 @@ class Odeme(models.Model):
     malzeme_turu=models.CharField(choices=MALZEME_TURU,blank=True,null=True)
     yil=models.IntegerField()
     ay=models.IntegerField(choices=AYLAR)
-    created=models.DateField(auto_created=True)
-    updated=models.DateField(auto_now_add=True)
+    odendi=models.BooleanField(default=False)
     create_user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)
+    created=models.DateField(auto_now_add=True)
+    updated=models.DateField(auto_now=True)
+
 
     class Meta:
         ordering = ["-yil","-ay"]
 
     def __str__(self):
-        return self.sporcu.adi+'-'+str(self.created)+'-'+str(self.odeme_turu)
+        return self.sporcu.adi+'-'+str(self.created)+'-'+str(self.odeme_turu)+'-'+str(self.ay)

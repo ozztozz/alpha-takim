@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Takim,Sporcu,Odeme,AYLAR
-from .forms import FormSporcu,FormTakim,FormSaglik,FormYuzme,FormSporcuFull,FormUlasim
+from .forms import FormSporcu,FormTakim,FormSaglik,FormYuzme,FormSporcuFull,FormUlasim,FormOdeme
 from django.views.generic import CreateView,UpdateView,DeleteView
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
@@ -52,8 +52,8 @@ def sporcudetay(request,s_uuid):
     odeme_check=[]
     for ay in AYLAR:
         if ay[0]<=bugun.month:
-            if odemeler.filter(ay=ay[0]):
-                odeme_check.append({'ay':ay[1],'odeme_tarihi':odemeler.filter(ay=ay[0]).first().created})
+            if odemeler.filter(ay=ay[0],odendi=True):
+                odeme_check.append({'ay':ay[1],'odeme_tarihi':odemeler.filter(ay=ay[0]).first().updated})
             else:
                 odeme_check.append({'ay':ay[1],'odeme_tarihi':None})
                 odenmemis=True
@@ -146,3 +146,24 @@ def saglik_ekle(request):
        form = FormSporcu()
    return render(request, 'takim/sporcu_form.html', {'form': form})
 
+
+def odeme_ekle(request):
+    if request.method=='POST':
+        data=request.POST
+        sporcu=data.get('sporcu')
+        odeme_turu='Uyelik'
+        yil=data.get('yil')
+        ay=data.get('ay')
+        if Odeme.objects.filter(sporcu=sporcu,odeme_turu=odeme_turu,yil=yil,ay=ay):
+            odeme_var=Odeme.objects.get(sporcu=sporcu,odeme_turu=odeme_turu,yil=yil,ay=ay)
+            form=FormOdeme(request.POST,instance=odeme_var)
+        else:
+            form=FormOdeme(request.POST)
+        if form.is_valid():
+            form.save()
+
+            return redirect('takim/')
+    else:
+        form=FormOdeme()
+    return render(request,'odeme.html',{'form':form})
+    

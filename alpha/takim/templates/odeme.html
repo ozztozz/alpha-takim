@@ -1,0 +1,26 @@
+{% extends "_base_kayit.html" %}
+
+{% block style %}
+
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+{% endblock style %}
+
+
+{% block content %}
+<div class="flex flex-1 flex-col md:flex-row lg:flex-row mt-16  ">
+  <div class="border-solid  rounded  shadow-sm w-full ">
+    <form action="" method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+
+      <div class="mt-4">
+        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Kaydet</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

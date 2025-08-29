@@ -1,5 +1,5 @@
 from django import forms
-from.models import Takim,Sporcu
+from.models import Takim,Sporcu,Odeme
 
 class FormTakim(forms.ModelForm):
     class Meta:
@@ -96,5 +96,17 @@ class FormSporcuFull(forms.ModelForm):
         add_class='w-full px-5 py-1 text-gray-700 bg-gray-200 rounded'
         super(FormSporcuFull, self).__init__(*args, **kwargs)
         self.fields['takim'].required = False
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = add_class
+
+class FormOdeme(forms.ModelForm):
+    class Meta:
+        model=Odeme
+        fields='__all__'
+
+    def __init__(self, *args, **kwargs):
+
+        add_class='w-full px-5 py-1 text-gray-700 bg-gray-200 rounded'
+        super(FormOdeme, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = add_class
