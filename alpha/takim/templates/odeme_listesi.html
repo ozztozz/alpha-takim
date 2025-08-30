@@ -1,0 +1,109 @@
+{% extends "_base_kayit.html" %}
+{% load static %}
+{% block style %}
+
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+{% endblock style %}
+{% block content %}
+<ul class="mt-16 list bg-base-100 rounded-box shadow-md">
+
+  {% for sporcu in sporcular %}
+  {% if sporcu.odendi %}
+
+  <li class="list-row">
+    <div><img class="size-10 rounded-box" src="{% get_media_prefix %}{{sporcu.resim}}" /></div>
+    <div>
+      <div>{{sporcu.adi}} {{sporcu.soyadi}}</div>
+    </div>
+    <button class="btn btn-square btn-ghost">
+      <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000"> </button>
+    <!-- The button to open modal -->
+    <label for="my_modal_{{sporcu.id}}" class="btn">Iptal</label>
+
+    <!-- Put this part before </body> tag -->
+    <input type="checkbox" id="my_modal_{{sporcu.id}}" class="modal-toggle" />
+    <div class="modal" role="dialog">
+      <div class="modal-box">
+
+        <div class="hero bg-base-200 ">
+          <div class="hero-content flex-col lg:flex-row-reverse">
+            <h1 class="text-2xl font-bold">Odeme Iptali!!!</h1>
+            <img src="{% get_media_prefix %}{{sporcu.resim}}" class="max-w-sm h-16 rounded-lg shadow-2xl" />
+            <div>
+              <h1 class="text-2xl font-bold">{{sporcu.adi}} {{sporcu.soyadi}}</h1>
+              <h3 class="text-xl font-bold"> {{sporcu.ay}} ayi odemesini iptal etmek istiyor musunuz?</h3>
+
+
+            </div>
+          </div>
+        </div>
+
+        <form action="{% url 'odeme' %}" method="post">
+
+          <div class='hidden'>
+            {% csrf_token %}
+            {{sporcu.form.as_p}}
+          </div>
+          <div class="modal-action mt-0">
+            <button class="px-4 py-1 btn btn-active btn-error" type="submit">Iptal Et</button>
+
+            <label for="my_modal_{{sporcu.id}}" class="btn mr-4 px-4 py-1  btn-active btn-warning ">Vazgec</label>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+<ul class="mt-16 list bg-base-100 rounded-box shadow-md">
+
+  {% for sporcu in sporcular %}
+  {% if sporcu.odendi == False %}
+
+  <li class="list-row">
+    <div><img class="size-10 rounded-box" src="{% get_media_prefix %}{{sporcu.resim}}" /></div>
+    <div>
+      <div>{{sporcu.adi}} {{sporcu.soyadi}}</div>
+    </div>
+    <button class="btn btn-square btn-ghost">
+      <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt=""> </button>
+    <button class="btn" onclick="my_modal_{{sporcu.id}}.showModal()">Odeme</button>
+    <dialog id="my_modal_{{sporcu.id}}" class="modal">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">Hello!</h3>
+        <p class="py-4">Press ESC key or click outside to close</p>
+
+        <div class="flex flex-1 flex-col md:flex-row lg:flex-row mt-16  ">
+          <div class="border-solid  rounded  shadow-sm w-full ">
+            <form action="{% url 'odeme' %}" method="post">
+              <div class='hidden'>
+                {% csrf_token %}
+                {{sporcu.form.as_p}}
+              </div>
+              <div class="mt-4">
+                <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
+                  type="submit">Kaydet</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+
+{% endblock content %}

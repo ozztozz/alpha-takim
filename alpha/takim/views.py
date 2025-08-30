@@ -33,7 +33,7 @@ def takim_list(request):
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
     sporcular=Sporcu.objects.all().values('dogum_tarihi__year','takim__adi','takim__renk','adi','soyadi','takim__adi','s_uuid')
     takim_yas = sporcular.values('dogum_tarihi__year','takim__adi','takim__renk').annotate(sayi=Count('id'))
-    print(sporcular)
+
    
 
     return render(request,'takimlar.html',{"takimlar":takimlar,'takim_yas':takim_yas,'sporcular':sporcular})
@@ -162,8 +162,33 @@ def odeme_ekle(request):
         if form.is_valid():
             form.save()
 
-            return redirect('takim/')
+            
     else:
         form=FormOdeme()
-    return render(request,'odeme.html',{'form':form})
+    return  redirect('/takim/odeme_list/8')
     
+
+def odeme_list(request,ay=None):
+    bugun=date.today()
+    yil=bugun.year
+    if ay==None:
+        ay=bugun.month
+    sporcular=Sporcu.objects.filter(aktif=True).values('adi','soyadi','takim__adi','id','resim').order_by('takim__adi','adi','soyadi',)
+    odeyenler=[sporcu['sporcu'] for sporcu in Odeme.objects.filter(ay=ay,yil=yil,odendi=True).values('sporcu')]
+
+    for sporcu in sporcular:
+        form_bilgileri={'sporcu':sporcu['id'],"odeme_turu":'Uyelik',"yil":yil,"ay":ay,'create_user':request.user.id}
+        if sporcu['id'] in odeyenler:           
+            sporcu['odendi']=True
+            form_bilgileri['odendi']=False
+        else:
+            sporcu['odendi']=False
+            form_bilgileri['odendi']=True
+        form=FormOdeme(initial=form_bilgileri)
+        sporcu['form']=form
+        sporcu['ay']=ay
+        sporcu['yil']=yil
+    return render (request,'odeme_listesi.html',{'sporcular':sporcular})
+
+
+
