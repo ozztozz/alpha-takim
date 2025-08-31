@@ -165,7 +165,7 @@ def odeme_ekle(request):
             
     else:
         form=FormOdeme()
-    return  redirect('/takim/odeme_list/8')
+    return  redirect('/takim/odeme_list/'+ay)
     
 
 def odeme_list(request,ay=None):
@@ -187,8 +187,9 @@ def odeme_list(request,ay=None):
         form=FormOdeme(initial=form_bilgileri)
         sporcu['form']=form
         sporcu['ay']=ay
+        sporcu['ay_adi']=AYLAR[ay-1][1]
         sporcu['yil']=yil
-    return render (request,'odeme_listesi.html',{'sporcular':sporcular})
+    return render (request,'odeme_listesi.html',{'sporcular':sporcular,'aylar':AYLAR})
 
 
 
