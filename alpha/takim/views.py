@@ -19,6 +19,7 @@ def  dashboard(request):
     sporcular=Sporcu.objects.all().order_by('-id')[:10]
     form=FormTakim
     sporcuform=FormSporcu
+
     return render(request,'dashboard.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform,'ay':ay})
 
 

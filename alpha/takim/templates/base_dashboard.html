@@ -83,13 +83,14 @@
 
                             </li>
                         </a>
-                        <a href="{% url 'odeme_list' {{ay.ay}} %}"
+                        {% now "n" as current_year %}
+                        <a href="{% url "odeme_list"  current_year   %}"
                             class="font-sans font-hairline hover:font-normal hover:bg-white text-sm text-nav-item no-underline">
                             <li class="w-full h-full py-3 px-2 border-b border-light-border">
 
                               <img class="size-8"
             src="https://img.icons8.com/?size=100&id=WSjGB0O5Cs0c&format=png&color=000000" alt="">
-                                Odemeler
+                                Odemeler 
 
 
                             </li>
