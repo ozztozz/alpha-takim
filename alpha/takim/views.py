@@ -13,6 +13,8 @@ from datetime import date
 def  dashboard(request):
     bugun=date.today()
     ay=bugun.month
+    if bugun.day>15:
+        ay=ay+1
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
     sporcular=Sporcu.objects.all().order_by('-id')[:10]
     form=FormTakim
