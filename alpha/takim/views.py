@@ -9,7 +9,7 @@ from datetime import date
 
 # Create your views here.
 
-@login_required(login_url='/')
+
 def  dashboard(request):
     bugun=date.today()
     ay=bugun.month
@@ -23,7 +23,7 @@ def  dashboard(request):
     return render(request,'dashboard.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform,'ay':ay})
 
 
-@login_required(login_url='/')
+
 def sporcu_list(request):
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
     sporcular=Sporcu.objects.all().order_by('-id')[:10]
@@ -33,7 +33,7 @@ def sporcu_list(request):
 
     return render(request,'sporcular.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform})
 
-@login_required(login_url='/')
+
 def takim_list(request):
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
     sporcular=Sporcu.objects.all().values('dogum_tarihi__year','takim__adi','takim__renk','adi','soyadi','takim__adi','s_uuid')
@@ -194,7 +194,9 @@ def odeme_list(request,ay=None):
         sporcu['ay']=ay
         sporcu['ay_adi']=AYLAR[ay-1][1]
         sporcu['yil']=yil
-    return render (request,'odeme_listesi.html',{'sporcular':sporcular,'aylar':AYLAR})
+    onceki_aylar=reversed(AYLAR[:bugun.month+1])
+
+    return render (request,'odeme_listesi.html',{'sporcular':sporcular,'aylar':onceki_aylar})
 
 
 
