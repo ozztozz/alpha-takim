@@ -11,11 +11,13 @@ from datetime import date
 
 @login_required(login_url='/')
 def  dashboard(request):
+    bugun=date.today()
+    ay=bugun.month
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
     sporcular=Sporcu.objects.all().order_by('-id')[:10]
     form=FormTakim
     sporcuform=FormSporcu
-    return render(request,'dashboard.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform})
+    return render(request,'dashboard.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform,'ay':ay})
 
 
 @login_required(login_url='/')
