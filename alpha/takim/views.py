@@ -152,6 +152,10 @@ def saglik_ekle(request):
    return render(request, 'takim/sporcu_form.html', {'form': form})
 
 
+
+
+
+
 def odeme_ekle(request):
     if request.method=='POST':
         data=request.POST
@@ -172,6 +176,7 @@ def odeme_ekle(request):
         form=FormOdeme()
     return  redirect('/takim/odeme_list/'+ay)
     
+
 
 def odeme_list(request,ay=None):
     bugun=date.today()
@@ -198,5 +203,8 @@ def odeme_list(request,ay=None):
 
     return render (request,'odeme_listesi.html',{'sporcular':sporcular,'aylar':onceki_aylar})
 
-
+def sporcu_bilgileri(request,s_uuid):
+    sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
+    print(sporcu.kronik_hastalik.help_text)
+    return render(request,'sporcu_bilgileri.html',{'sporcu':sporcu})
 

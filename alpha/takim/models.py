@@ -38,7 +38,8 @@ class Sporcu(models.Model):
     s_uuid=models.UUIDField(default=uuid.uuid4, unique=True,
           primary_key=False, editable=False,null=True)
 
-    kronik_hastalik=models.CharField(null=True,blank=True)
+    kronik_hastalik=models.CharField(null=True,blank=True,help_text='Kronik falan')
+    kronik_hastalik.aciklama='Kronik hastalik var mi'
     sakatlik_ameliyat=models.CharField(null=True,blank=True)
     kullanilan_ilac=models.CharField(null=True,blank=True)
     alerji=models.CharField(null=True,blank=True)

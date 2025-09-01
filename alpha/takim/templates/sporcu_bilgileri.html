@@ -1,0 +1,197 @@
+{% extends "_base_kayit.html" %}
+
+{% block style %}
+
+
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+{% endblock style %}
+
+
+{% block content %}
+
+
+
+
+<!--Profile Tabs-->
+<div class="w-full md:w-1/2 ">
+  <!--Top user 1-->
+  <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-lg   ">
+    <div class="h-16  shadow-xl w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
+    <div class="flex justify-center -mt-8">
+      <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
+        class="rounded-full h-24 w-24 border-solid border-{{sporcu.takim.renk}}-400 border-5 shadow-xl  -mt-4">
+    </div>
+    <div class="text-center   px-3 pb-6 py-2">
+      <h3 class="text-gray-600  font-bold font-sans">{{sporcu.adi}} {{sporcu.soyadi}}</h3>
+
+      <p class="mt-2 py-2 rounded font-sans font-bold text-{{sporcu.takim.renk}}-200 bg-{{sporcu.takim.renk}}-500 ">
+        {{sporcu.takim.adi}} Takım</p>
+
+    </div>
+  </div>
+
+
+  {{sporcu.kronik_hastalik.aciklama}}
+<div class="tabs tabs-border">
+  <input type="radio" name="my_tabs_2" class="tab" aria-label="Yüzme"  checked="checked"/>
+  <div class="tab-content border-base-300 bg-base-100 p-10">
+          <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar
+                süreyle?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_gecmisi|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Hangi yüzme tekniklerini biliyor? (Serbest / Sırtüstü/
+                Kurbağalama /
+                Kelebek)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.yuzme_bilgisi|default_if_none:"--"}}
+
+              </div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4  text-sm text-gray-600 ">- Derin suya girebiliyor mu?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.derinlik|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Suya atlama / batma korkusu yaşıyor mu?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.su_korkusu|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Havuz dışında denizde / gölde yüzme deneyimi oldu mu?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.denizde_yuzme|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Aile bu eğitimi neden aldırmak istiyor? (Hobi, öğrenme,
+                lisansli yüzücü vb.)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.neden_yuzme|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve
+                saatleri)
+
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.diger_spor|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Sporcu bu eğitime ne kadar istekli? (Aile gözlemine gore)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.istek_yuzme|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin uzun vadeli beklentisi nedir?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.vade_yuzme|default_if_none:"--"}}</div>
+            </div>
+          </div>
+
+  </div>
+
+  <input type="radio" name="my_tabs_2" class="tab" aria-label="Sağlık" />
+  <div class="tab-content border-base-300 bg-base-100 p-10">
+            <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Herhangi bir kronik rahatsızlığı var mı? (Astim, diyabet,
+                epilepsi vb.)
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kronik_hastalik|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve
+                detayları)?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sakatlik_ameliyat|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4  text-sm text-gray-600 ">- Düzenli kullandığı ilaçlar var mı?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kullanilan_ilac|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Alerjik olduğu herhangi bir madde / ilaç / besin var mı?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.alerji|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- - Kalp veya solunumla ilgili şikâyet yasadı mı?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalp|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Sporcu içe dönük mü, dışa dönük mü?
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.sosyal|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Kalabalık ortamlarda rahat mı?</div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.kalabalik|default_if_none:"--"}}</div>
+            </div>
+
+            <div class="w-full grid grid-cols-7  pt-4 ">
+              <div class="col-span-4 text-sm text-gray-600 ">- Komut almada zorlanır mı?
+
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.komut|default_if_none:"--"}}</div>
+            </div>
+
+          </div>
+  </div>
+
+  <input type="radio" name="my_tabs_2" class="tab" aria-label="Notlar" />
+  <div class="tab-content border-base-300 bg-base-100 p-10">
+         <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
+
+
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Ailenin özel olarak paylaşmak istediği başka bir durum
+                var mı?
+
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.aile_not|default_if_none:"--"}}</div>
+            </div>
+            <div class="w-full grid grid-cols-7 pt-4">
+              <div class="col-span-4 text-sm text-gray-600 ">- Antrenörün ilk izlenim notu (gözlem sonrası
+                doldurulabilir).
+              </div>
+              <div class="pl-4 text-sm text-gray-600 ">{{sporcu.antrenor_not|default_if_none:"--"}}</div>
+            </div>
+
+          </div>
+  </div>
+
+ <input type="radio" name="my_tabs_2" class="tab" aria-label="Notlar" />
+  <div class="tab-content border-base-300 bg-base-100 p-4">
+    <div class="overflow-x-auto rounded-box bg-base-100">
+  <table class="table">
+    <!-- head -->
+
+    <tbody>
+      <!-- row 1 -->
+      <tr>
+        <td> Ailenin özel olarak paylaşmak istediği başka bir durum var mı?</td>
+        <td>{{sporcu.aile_not|default_if_none:"--"}}</td>
+      </tr>
+            <tr>
+        <td> Antrenörün ilk izlenim notu (gözlem sonrası
+                doldurulabilir)</td>
+        <td>{{sporcu.antrenor_not|default_if_none:"--"}}</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+
+</div>
+{% endblock content %}
