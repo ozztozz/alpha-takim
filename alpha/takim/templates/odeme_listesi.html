@@ -85,21 +85,26 @@
             </div>
           </div>
         </div>
+        <div class="flex justify-end gap-4 items_center ">
+          <div class="">
+            <form action="{% url 'odeme' %}" method="post">
 
-        <form action="{% url 'odeme' %}" method="post">
-
-          <div class='hidden'>
-            {% csrf_token %}
-            {{sporcu.form.as_p}}
+              <div class='hidden'>
+                {% csrf_token %}
+                {{sporcu.form.as_p}}
+              </div>
+              <div class="">
+                <button class="btn btn-active btn-error " type="submit">Evet</button>
+              </div>
+            </form>
           </div>
-          <div class="modal-action mt-4">
-            <button class="px-4 py-1 btn btn-active btn-error" type="submit">Evet</button>
-
-            <label for="my_modal_odenmedi_{{sporcu.id}}"
-              class="btn mr-4 px-4 py-1  btn-active btn-warning ">Vazgeç</label>
-
+          <div class="">
+            <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-active btn-accent ">Vazgeç</button>
+          </form>
           </div>
-        </form>
+      </div>
 </dialog>
       
  
@@ -141,14 +146,14 @@
     <dialog id="my_modal_{{sporcu.id}}" class="modal">
   <div class="modal-box">
 
-
+ 
         <div class="hero bg-base-200 ">
           <div class="hero-content flex-col ">
             <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
             </button>
             <h1 class="text-2xl font-bold">Ödeme İptali!!!</h1>
              <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
-    class="max-w-sm h-16 rounded-lg shadow-2xl" />
+                  class="max-w-sm h-16 rounded-lg shadow-2xl" />
             <div>
               <h1 class="text-2xl font-bold">{{sporcu.adi}} {{sporcu.soyadi}}</h1>
               <h3 class="text-xl mt-2 "> <span class="text-blue-500 font-bold"> {{sporcu.yil}}- {{sporcu.ay_adi}}
@@ -160,20 +165,28 @@
             </div>
           </div>
         </div>
-
+        <div class="flex justify-end gap-4 items_center ">
+          <div class="">
         <form action="{% url 'odeme' %}" method="post">
 
           <div class='hidden'>
             {% csrf_token %}
             {{sporcu.form.as_p}}
           </div>
-          <div class="modal-action mt-4">
+          <div class="">
             <button class="px-4 py-1 btn btn-active btn-error" type="submit">İptal Et</button>
-
-            <label for="my_modal_{{sporcu.id}}" class="btn mr-4 px-4 py-1  btn-active btn-warning ">Vazgeç</label>
-
           </div>
         </form>
+         </div>
+                 <div class="">
+            <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn btn-active btn-accent ">Vazgeç</button>
+          </form>
+          </div>
+      </div>
+
+
 </dialog>
 
   </li>

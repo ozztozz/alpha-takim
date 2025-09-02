@@ -3,6 +3,9 @@
 .pointer-events-none {
   pointer-events: none;
 }
+.collapse {
+  visibility: collapse;
+}
 .visible {
   visibility: visible;
 }
@@ -98,10 +101,6 @@
 .table {
   display: table;
 }
-.size-\[1\.2em\] {
-  width: 1.2em;
-  height: 1.2em;
-}
 .h-2\/5 {
   height: calc(2/5 * 100%);
 }
@@ -192,14 +191,8 @@
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
@@ -224,6 +217,9 @@
 }
 .justify-end {
   justify-content: flex-end;
+}
+.justify-evenly {
+  justify-content: space-evenly;
 }
 .divide-y {
   :where(& > :not(:last-child)) {
@@ -253,9 +249,17 @@
   border-style: var(--tw-border-style);
   border-width: 1px;
 }
+.border-0 {
+  border-style: var(--tw-border-style);
+  border-width: 0px;
+}
 .border-2 {
   border-style: var(--tw-border-style);
   border-width: 2px;
+}
+.border-5 {
+  border-style: var(--tw-border-style);
+  border-width: 5px;
 }
 .border-t {
   border-top-style: var(--tw-border-style);
@@ -334,6 +338,9 @@
 }
 .opacity-40 {
   opacity: 40%;
+}
+.opacity-50 {
+  opacity: 50%;
 }
 .opacity-60 {
   opacity: 60%;
