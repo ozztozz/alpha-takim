@@ -49,6 +49,9 @@ def modal(request):
     return render(request,'modal.html',{"takimlar":takimlar,'sporcular':sporcular})
 
 
+
+
+
 def sporcudetay(request,s_uuid):
     bugun=date.today()
     sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
@@ -154,8 +157,8 @@ def saglik_ekle(request):
 
 
 
-
-
+from django.views.decorators.cache import never_cache
+@never_cache
 def odeme_ekle(request):
     if request.method=='POST':
         data=request.POST
@@ -178,6 +181,7 @@ def odeme_ekle(request):
     
 
 
+@never_cache
 def odeme_list(request,ay=None):
     bugun=date.today()
     yil=bugun.year
@@ -187,7 +191,7 @@ def odeme_list(request,ay=None):
     odeyenler=[sporcu['sporcu'] for sporcu in Odeme.objects.filter(ay=ay,yil=yil,odendi=True).values('sporcu')]
 
     for sporcu in sporcular:
-        form_bilgileri={'sporcu':sporcu['id'],"odeme_turu":'Uyelik',"yil":yil,"ay":ay,'create_user':request.user.id}
+        form_bilgileri={'sporcu':sporcu['id'],"odeme_turu":'Uyelik',"yil":yil,"ay":ay,'create_user':1}
         if sporcu['id'] in odeyenler:           
             sporcu['odendi']=True
             form_bilgileri['odendi']=False

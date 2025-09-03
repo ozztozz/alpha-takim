@@ -8,9 +8,22 @@
 
 
 {% endblock style %}
+
 {% block content %}
-<div tabindex="0" class="collapse mt-16 bg-base-100 border-base-300 border">
-  <div class="collapse-title font-semibold">Diğer Aylar</div>
+
+<button class="btn btn-block h-10 mt-2  flex-row bg-slate-200 rounded-lg">
+
+  <p class="uppercase">{{sporcular.0.yil}}-{{sporcular.0.ay_adi}} Ayı Üyelik Ödemeleri <br>
+
+  </p>
+
+</button>
+<div tabindex="0" class="collapse  bg-base-100 border-base-300 border">
+  <div class="collapse-title h-10 items-center font-semibold flex gap-4">
+    <div><p> Diğer Aylar</p></div>
+    <div> <img class="size-4 mt-2" src="https://img.icons8.com/?size=100&id=39786&format=png&color=000000" alt=""></div>
+   
+  </div>
   <div class="collapse-content text-sm">
     <div class="inline-block ">
       {% for ay in aylar %}
@@ -23,20 +36,8 @@
     </div>
   </div>
 </div>
-
-
-
-
-<button class="btn btn-block h-10 mt-4  flex-row bg-slate-200 rounded-lg">
-
-  <p class="uppercase">{{sporcular.0.yil}}-{{sporcular.0.ay_adi}} Ayı Üyelik Ödemeleri <br>
-
-  </p>
-
-</button>
-
 <!-- odeme yapmayanlar -->
-<button class="btn btn-block h-10  mt-6 flex-row bg-red-300 rounded-lg">
+<button class="btn btn-block h-10  mt-2 flex-row bg-red-300 rounded-lg">
 
   <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
 
@@ -115,7 +116,7 @@
 </ul>
 
 <!-- odeme yapanlar -->
-<button class="btn btn-block h-10 mt-6 flex-row bg-green-300 rounded-lg">
+<button class="btn btn-block h-10 mt-2 flex-row bg-green-300 rounded-lg">
 
   <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
 
