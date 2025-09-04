@@ -2,43 +2,32 @@
 
 {% block content %}
 
-
-<div class="flex flex-col">
-
-
-
-
-    <!-- Takım bilgileri -->
-    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-        {% for takim in takimlar %}
-        <div
-            class="shadow grid grid-cols-1 bg-{{takim.renk}}-500  border-l-8 hover:bg-{{takim.renk}}-600 border-{{takim.renk}}-700 lg:mx-2 mb-2 p-2 md:w-1/4 ">
-            <div class="lg:p-4 flex flex-col">
-                <a href="" class="no-underline text-white text-2xl">
-                    {{takim.adi|title}} Takım
-                </a>
-                <a href="" class="no-underline text-white text-lg">
-                    Sporcu: {{takim.number_of_sporcu}}
-                </a>
-            </div>
+<div class="grid grid-col  md:grid-cols-2 lg:grid-cols-3  ">
+ {% for takim in takimlar %}
+<div class="card mx-0 mt-2 md:m-2 bg-{{takim.renk}}-500 bg-opacity-10 shadow-sm">
+  <div class="card-body">
+    <div class="flex justify-between">
+      <h2 class="text-2xl font-bold text-{{takim.renk}}-800">{{takim.adi|title}} </h2>
+      <span class="text-xl text-{{takim.renk}}-800">Sporcu: {{takim.number_of_sporcu}}</span>
+    </div>
             <div class="rounded  overflow-hidden  w-full ">
 
                 {% for yas in takim_yas %}
                 {% if yas.takim__adi == takim.adi %}
                 <div class="grid grid-cols-1 justify-center text-white">
-                    <div class="text-center rounded-t-lg    bg-{{takim.renk}}-800 border-">
-                        <h2>{{yas.dogum_tarihi__year}}</h2>
+                    <div class="text-center mt-2 rounded-t-lg bg-{{takim.renk}}-700 ">
+                        <h2 class="text-base-100 font-bold">{{yas.dogum_tarihi__year}}</h2>
 
                     </div>
 
-                    <div class="p-2 bg-{{takim.renk}}-700  shadow-lg mb-1">
+                    <div class="p-2 bg-{{takim.renk}}-400  shadow-lg mb-1">
 
                         <ul class="list-disc w-full p-0  m-0">
                             {% for sporcu in sporcular %}
                             {% if sporcu.takim__adi == takim.adi and sporcu.dogum_tarihi__year == yas.dogum_tarihi__year%}
-                            <li class="ml-3  text-{{takim.renk}}-400">
+                            <li class="ml-3 font-semibold text-{{takim.renk}}-900">
                                 <a href="{% url 'sporcudetay' sporcu.s_uuid %}">
-                                    <p class=" mx-0 font-sans text-s text-white-medium">{{sporcu.adi|title}}
+                                    <p class=" mx-0 font-sans text-monospace">{{sporcu.adi|title}}
                                         {{sporcu.soyadi|title}}</p>
                                 </a>
 
@@ -52,18 +41,8 @@
                 {% endfor %}
             </div>
 
-        </div>
-
-
-        {% endfor %}
-
-
-    </div>
-
-    <!-- /Takım bilgileri Ends Here -->
-
-
-
+  </div>
 </div>
 
+  {% endfor %}
 {% endblock content %}

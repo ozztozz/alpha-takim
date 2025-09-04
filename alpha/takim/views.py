@@ -9,31 +9,35 @@ from datetime import date
 
 # Create your views here.
 
-
+@login_required
 def  dashboard(request):
     bugun=date.today()
-    ay=bugun.month
+    ay=bugun.month-1
+    yil=bugun.year
+    
     if bugun.day>15:
+        print(bugun.day)
         ay=ay+1
-    takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
-    sporcular=Sporcu.objects.all().order_by('-id')[:10]
+    takimlar = Takim.objects.filter(aktif=True).count()
+    sporcular=Sporcu.objects.filter(aktif=True).count()
+    odemeler=Odeme.objects.filter(ay=ay,yil=yil,odendi=True).count()
     form=FormTakim
     sporcuform=FormSporcu
+    ay_adi=AYLAR[ay]
+    return render(request,'dashboard.html',{'takimlar':takimlar,'sporcular':sporcular,'odemeler':odemeler,'ay_adi':ay_adi})
 
-    return render(request,'dashboard.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform,'ay':ay})
 
-
-
+@login_required
 def sporcu_list(request):
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
-    sporcular=Sporcu.objects.all().order_by('-id')[:10]
+    sporcular=Sporcu.objects.all().order_by('-id')
     form=FormTakim
     sporcuform=FormSporcuFull
 
 
     return render(request,'sporcular.html',{"takimlar":takimlar,'sporcular':sporcular,'form':form,'sporcuform':sporcuform})
 
-
+@login_required
 def takim_list(request):
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
     sporcular=Sporcu.objects.all().values('dogum_tarihi__year','takim__adi','takim__renk','adi','soyadi','takim__adi','s_uuid')
@@ -158,6 +162,7 @@ def saglik_ekle(request):
 
 
 from django.views.decorators.cache import never_cache
+@login_required
 @never_cache
 def odeme_ekle(request):
     if request.method=='POST':
@@ -180,7 +185,7 @@ def odeme_ekle(request):
     return  redirect('/takim/odeme_list/'+ay)
     
 
-
+@login_required
 @never_cache
 def odeme_list(request,ay=None):
     bugun=date.today()
