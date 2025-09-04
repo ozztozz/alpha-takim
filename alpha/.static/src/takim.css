@@ -6,6 +6,9 @@
 .collapse {
   visibility: collapse;
 }
+.invisible {
+  visibility: hidden;
+}
 .visible {
   visibility: visible;
 }
@@ -190,6 +193,10 @@
   --tw-translate-x: calc(calc(2/4 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
 }
+.-translate-x-full {
+  --tw-translate-x: -100%;
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
 .-translate-y-1\/2 {
   --tw-translate-y: calc(calc(1/2 * 100%) * -1);
   translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -281,6 +288,10 @@
   border-style: var(--tw-border-style);
   border-width: 2px;
 }
+.border-4 {
+  border-style: var(--tw-border-style);
+  border-width: 4px;
+}
 .border-5 {
   border-style: var(--tw-border-style);
   border-width: 5px;
@@ -300,6 +311,10 @@
 .border-b {
   border-bottom-style: var(--tw-border-style);
   border-bottom-width: 1px;
+}
+.border-b-3 {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 3px;
 }
 .border-b-4 {
   border-bottom-style: var(--tw-border-style);
@@ -400,8 +415,17 @@
   transition-timing-function: var(--tw-ease, ease);
   transition-duration: var(--tw-duration, 0s);
 }
+.transition-transform {
+  transition-property: transform, translate, scale, rotate;
+  transition-timing-function: var(--tw-ease, ease);
+  transition-duration: var(--tw-duration, 0s);
+}
 .transition-discrete {
   transition-behavior: allow-discrete;
+}
+.duration-200 {
+  --tw-duration: 200ms;
+  transition-duration: 200ms;
 }
 .duration-300 {
   --tw-duration: 300ms;

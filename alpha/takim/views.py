@@ -203,7 +203,7 @@ def odeme_list(request,ay=None):
         sporcu['ay']=ay
         sporcu['ay_adi']=AYLAR[ay-1][1]
         sporcu['yil']=yil
-    onceki_aylar=reversed(AYLAR[:bugun.month+1])
+    onceki_aylar=list(reversed(AYLAR[:bugun.month+1]))
 
     return render (request,'odeme_listesi.html',{'sporcular':sporcular,'aylar':onceki_aylar})
 

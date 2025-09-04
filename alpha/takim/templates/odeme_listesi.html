@@ -1,197 +1,208 @@
-{% extends "_base_kayit.html" %}
+{% extends "_base_yeni.html" %}
 {% load static %}
 {% block style %}
 
 
-<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 
 
 {% endblock style %}
 
 {% block content %}
+<div class="flex gap-4">
+  <div class=" md:w-1/2  ">
+      <button class="btn btn-block h-10  flex-row bg-slate-200 rounded-lg">
 
-<button class="btn btn-block h-10 mt-2  flex-row bg-slate-200 rounded-lg">
+        <p class="uppercase">{{sporcular.0.yil}}-{{sporcular.0.ay_adi}} Ayı Üyelik Ödemeleri <br>
 
-  <p class="uppercase">{{sporcular.0.yil}}-{{sporcular.0.ay_adi}} Ayı Üyelik Ödemeleri <br>
+        </p>
 
-  </p>
+      </button>
+      <div tabindex="0" class="collapse md:hidden bg-base-100 border-base-300 border">
+        <div class="collapse-title h-10 items-center font-semibold flex gap-4">
+          <div><p> Diğer Aylar</p></div>
+          <div> <img class="size-4 mt-2" src="https://img.icons8.com/?size=100&id=39786&format=png&color=000000" alt=""></div>
+        
+        </div>
+        <div class="collapse-content text-sm">
+          <div class="inline-block ">
+            {% for ay in aylar %}
+            <a href="{% url 'odeme_list' ay.0 %}"> <button
+                class="btn mt-2 {% if sporcular.0.ay == ay.0 %} bg-gray-300  {% else %}btn-soft text-gray-400 {% endif %} ">{{ay.1}}</button></a>
 
-</button>
-<div tabindex="0" class="collapse  bg-base-100 border-base-300 border">
-  <div class="collapse-title h-10 items-center font-semibold flex gap-4">
-    <div><p> Diğer Aylar</p></div>
-    <div> <img class="size-4 mt-2" src="https://img.icons8.com/?size=100&id=39786&format=png&color=000000" alt=""></div>
-   
+            {% endfor %}
+
+
+          </div>
+        </div>
+      </div>
+      <!-- odeme yapmayanlar -->
+      <button class="btn btn-block h-10  mt-2 flex-row bg-red-300 rounded-lg">
+
+        <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
+
+        <p class="text-xs">Ödeme Yapmayanlar <br>
+
+        </p>
+
+      </button>
+      <ul class=" list bg-base-100 rounded-box shadow-md">
+
+        {% for sporcu in sporcular %}
+        {% if sporcu.odendi == False %}
+
+        <li class="list-row">
+        
+          <div>  <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
+            class="size-10 rounded-box"></div>
+          <div>
+            <div>{{sporcu.adi}} {{sporcu.soyadi}}</div> 
+          </div>
+          <button class="btn btn-square btn-ghost">
+            <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt=""> </button>
+
+          <!-- odeme yapmayanlar modal -->
+        
+            <button class="btn" onclick="my_modal_odenmedi_{{sporcu.id}}.showModal()">Ödeme</button>
+          <!-- Put this part before </body> tag -->
+
+      <dialog id="my_modal_odenmedi_{{sporcu.id}}" class="modal">
+        <div class="modal-box">
+              <div class="hero bg-base-200 ">
+                <div class="hero-content flex-col ">
+                  <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+                  </button>
+                  <h1 class="text-2xl font-bold">Ödeme Kaydet</h1>
+                  <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
+                            class="max-w-sm h-16 rounded-lg shadow-2xl" />
+                  <div>
+                    <h1 class="text-2xl font-bold">{{sporcu.adi}} {{sporcu.soyadi}}</h1>
+                    <h3 class="text-xl mt-2"> <span class="text-blue-500 font-bold"> {{sporcu.yil}}- {{sporcu.ay_adi}} </span>
+                      ayı
+                      ödemesini kaydetmek istiyor musunuz?
+                    </h3>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end gap-4 items_center ">
+                <div class="">
+                  <form action="{% url 'odeme' %}" method="post">
+
+                    <div class='hidden'>
+                      {% csrf_token %}
+                      {{sporcu.form.as_p}}
+                    </div>
+                    <div class="">
+                      <button class="btn btn-active btn-accent " type="submit">Evet</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="">
+                  <form method="dialog">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button class="btn btn-active btn-warning ">Vazgeç</button>
+                </form>
+                </div>
+            </div>
+      </dialog>
+            
+      
+
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+      <!-- odeme yapanlar -->
+      <button class="btn btn-block h-10 mt-2 flex-row bg-green-300 rounded-lg">
+
+        <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
+
+        <p class="text-xs">Ödeme Yapanlar <br>
+
+        </p>
+
+      </button>
+      <ul class="list bg-base-100 rounded-box shadow-md">
+
+        {% for sporcu in sporcular %}
+        {% if sporcu.odendi %}
+
+        <li class="list-row">
+          <div> <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
+            class="size-10 rounded-box"></div>
+          <div>
+            <div>{{sporcu.adi}} {{sporcu.soyadi}}</div>
+          </div>
+          <button class="btn btn-square btn-ghost">
+            <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000"> </button>
+          <!-- The button to open modal -->
+      
+          <button class="btn" onclick="my_modal_{{sporcu.id}}.showModal()">Düzenle</button>
+
+          <!-- Put this part before </body> tag -->
+
+          <dialog id="my_modal_{{sporcu.id}}" class="modal">
+        <div class="modal-box">
+
+      
+              <div class="hero bg-base-200 ">
+                <div class="hero-content flex-col ">
+                  <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
+                  </button>
+                  <h1 class="text-2xl font-bold">Ödeme İptali!!!</h1>
+                  <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
+                        class="max-w-sm h-16 rounded-lg shadow-2xl" />
+                  <div>
+                    <h1 class="text-2xl font-bold">{{sporcu.adi}} {{sporcu.soyadi}}</h1>
+                    <h3 class="text-xl mt-2 "> <span class="text-blue-500 font-bold"> {{sporcu.yil}}- {{sporcu.ay_adi}}
+                      </span> ayı
+                      ödemesini iptal etmek istiyor
+                      musunuz?</h3>
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end gap-4 items_center ">
+                <div class="">
+              <form action="{% url 'odeme' %}" method="post">
+
+                <div class='hidden'>
+                  {% csrf_token %}
+                  {{sporcu.form.as_p}}
+                </div>
+                <div class="">
+                  <button class="px-4 py-1 btn btn-active btn-error" type="submit">İptal Et</button>
+                </div>
+              </form>
+              </div>
+                      <div class="">
+                  <form method="dialog">
+                  <!-- if there is a button in form, it will close the modal -->
+                  <button class="btn btn-active btn-warning ">Vazgeç</button>
+                </form>
+                </div>
+            </div>
+
+
+      </dialog>
+
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
   </div>
-  <div class="collapse-content text-sm">
-    <div class="inline-block ">
-      {% for ay in aylar %}
-      <a href="{% url 'odeme_list' ay.0 %}"> <button
-          class="btn mt-2 {% if sporcular.0.ay == ay.0 %}btn-primary {% else %}btn-soft {% endif %} ">{{ay.1}}</button></a>
 
-      {% endfor %}
-
-
-    </div>
+  <div class="flex flex-col hidden  lg:flex ">
+    <h1 class="text-gray-400 text-center border-b-3 p-2  "> Diğer Aylar</h1>
+ 
+    {% for ay in aylar %}
+    <a href="{% url 'odeme_list' ay.0 %}"> <button
+        class="btn w-30 mt-2 {% if sporcular.0.ay == ay.0 %} bg-gray-300  {% else %}btn-soft text-gray-400 {% endif %} ">{{ay.1}}</button></a>
+    {% endfor %}
   </div>
 </div>
-<!-- odeme yapmayanlar -->
-<button class="btn btn-block h-10  mt-2 flex-row bg-red-300 rounded-lg">
-
-  <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
-
-  <p class="text-xs">Ödeme Yapmayanlar <br>
-
-  </p>
-
-</button>
-<ul class=" list bg-base-100 rounded-box shadow-md">
-
-  {% for sporcu in sporcular %}
-  {% if sporcu.odendi == False %}
-
-  <li class="list-row">
-  
-    <div>  <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
-      class="size-10 rounded-box"></div>
-    <div>
-      <div>{{sporcu.adi}} {{sporcu.soyadi}}</div> 
-    </div>
-    <button class="btn btn-square btn-ghost">
-      <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt=""> </button>
-
-    <!-- odeme yapmayanlar modal -->
-  
-      <button class="btn" onclick="my_modal_odenmedi_{{sporcu.id}}.showModal()">Ödeme</button>
-    <!-- Put this part before </body> tag -->
-
-<dialog id="my_modal_odenmedi_{{sporcu.id}}" class="modal">
-  <div class="modal-box">
-        <div class="hero bg-base-200 ">
-          <div class="hero-content flex-col ">
-            <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-            </button>
-            <h1 class="text-2xl font-bold">Ödeme Kaydet</h1>
-             <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
-                      class="max-w-sm h-16 rounded-lg shadow-2xl" />
-            <div>
-              <h1 class="text-2xl font-bold">{{sporcu.adi}} {{sporcu.soyadi}}</h1>
-              <h3 class="text-xl mt-2"> <span class="text-blue-500 font-bold"> {{sporcu.yil}}- {{sporcu.ay_adi}} </span>
-                ayı
-                ödemesini kaydetmek istiyor musunuz?
-              </h3>
-
-
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-end gap-4 items_center ">
-          <div class="">
-            <form action="{% url 'odeme' %}" method="post">
-
-              <div class='hidden'>
-                {% csrf_token %}
-                {{sporcu.form.as_p}}
-              </div>
-              <div class="">
-                <button class="btn btn-active btn-error " type="submit">Evet</button>
-              </div>
-            </form>
-          </div>
-          <div class="">
-            <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
-            <button class="btn btn-active btn-accent ">Vazgeç</button>
-          </form>
-          </div>
-      </div>
-</dialog>
-      
- 
-
-  </li>
-  {% endif %}
-  {% endfor %}
-</ul>
-
-<!-- odeme yapanlar -->
-<button class="btn btn-block h-10 mt-2 flex-row bg-green-300 rounded-lg">
-
-  <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000">
-
-  <p class="text-xs">Ödeme Yapanlar <br>
-
-  </p>
-
-</button>
-<ul class="list bg-base-100 rounded-box shadow-md">
-
-  {% for sporcu in sporcular %}
-  {% if sporcu.odendi %}
-
-  <li class="list-row">
-    <div> <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
-      class="size-10 rounded-box"></div>
-    <div>
-      <div>{{sporcu.adi}} {{sporcu.soyadi}}</div>
-    </div>
-    <button class="btn btn-square btn-ghost">
-      <img class="size-6 m-2" src="https://img.icons8.com/?size=100&id=2Tv2g4T4Wtu0&format=png&color=000000"> </button>
-    <!-- The button to open modal -->
- 
-    <button class="btn" onclick="my_modal_{{sporcu.id}}.showModal()">Düzenle</button>
-
-    <!-- Put this part before </body> tag -->
-
-    <dialog id="my_modal_{{sporcu.id}}" class="modal">
-  <div class="modal-box">
-
- 
-        <div class="hero bg-base-200 ">
-          <div class="hero-content flex-col ">
-            <img class="size-6" src="https://img.icons8.com/?size=100&id=63690&format=png&color=000000" alt="">
-            </button>
-            <h1 class="text-2xl font-bold">Ödeme İptali!!!</h1>
-             <img {% if sporcu.resim %}src="{% get_media_prefix %}{{sporcu.resim}}" {% else%}src="{% get_media_prefix %}logo.jpeg" {% endif %} alt=""
-                  class="max-w-sm h-16 rounded-lg shadow-2xl" />
-            <div>
-              <h1 class="text-2xl font-bold">{{sporcu.adi}} {{sporcu.soyadi}}</h1>
-              <h3 class="text-xl mt-2 "> <span class="text-blue-500 font-bold"> {{sporcu.yil}}- {{sporcu.ay_adi}}
-                </span> ayı
-                ödemesini iptal etmek istiyor
-                musunuz?</h3>
-
-
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-end gap-4 items_center ">
-          <div class="">
-        <form action="{% url 'odeme' %}" method="post">
-
-          <div class='hidden'>
-            {% csrf_token %}
-            {{sporcu.form.as_p}}
-          </div>
-          <div class="">
-            <button class="px-4 py-1 btn btn-active btn-error" type="submit">İptal Et</button>
-          </div>
-        </form>
-         </div>
-                 <div class="">
-            <form method="dialog">
-            <!-- if there is a button in form, it will close the modal -->
-            <button class="btn btn-active btn-accent ">Vazgeç</button>
-          </form>
-          </div>
-      </div>
-
-
-</dialog>
-
-  </li>
-  {% endif %}
-  {% endfor %}
-</ul>
 {% endblock content %}
