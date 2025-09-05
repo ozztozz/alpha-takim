@@ -57,10 +57,12 @@ from django.core import serializers
 def sporcubilgileri(request,s_uuid):
     sporcu=Sporcu.objects.filter(s_uuid=s_uuid).values().first()
     kisisel_bilgiler=[]
-    
+    index=0
     for kategori,data in KISISEL_BILGILER.items():
+        kisisel_bilgiler.append({'kategori':kategori,'sorular':[]})
         for baslik,soru in data.items():
-            kisisel_bilgiler.append({'kategori':kategori,'baslik':baslik,'soru':soru,'bilgi':sporcu[baslik]})
+            kisisel_bilgiler[index]['sorular'].append({'baslik':baslik,'soru':soru,'bilgi':sporcu[baslik]})
+        index=+1
     return render(request, 'sporcu_bilgileri.html',{'sporcu':sporcu,'kisisel_bilgiler':kisisel_bilgiler})
 
 

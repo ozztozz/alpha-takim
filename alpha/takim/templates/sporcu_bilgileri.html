@@ -91,7 +91,11 @@
   </div>
 
 
- {{kisisel_bilgiler}}
+{% for kategori in kisisel_bilgiler %}
+  {{kategori.kategori}}
+{% endfor %}
+  
+ 
   <input type="radio" name="my_tabs_2" class="tab" aria-label="Sağlık" />
   <div class="tab-content border-base-300 bg-base-100 p-10">
             <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
