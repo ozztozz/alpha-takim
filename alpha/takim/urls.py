@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import takim_list,CreateTakim,sporcu_ekle,updateSporcu,sporcudetay,sporcukayit,sporcu_list,dashboard,odeme_ekle,odeme_list
+from .views import takim_list,CreateTakim,sporcu_ekle,updateSporcu,sporcudetay,sporcukayit,sporcu_list,dashboard,odeme_ekle,odeme_list,sporcubilgileri
 
 urlpatterns = [
     path('',dashboard,name='takim'),
@@ -7,6 +7,7 @@ urlpatterns = [
     path('takimlar/',takim_list,name='takim_list'),
     path('sporcukayit/',sporcukayit,name='sporcukayit'),
     path('sporcudetay/<uuid:s_uuid>/',sporcudetay,name='sporcudetay'),
+    path('sporcubilgileri/<uuid:s_uuid>/',sporcubilgileri,name='sporcubilgileri'),
     path('takimekle/',CreateTakim.as_view(),name='takimekle'),
     path('sporcuekle/',sporcu_ekle,name='sporcuekle'),
     path('sporcupdate/<uuid:s_uuid>/<str:detay>',updateSporcu,name='sporcupdate'),

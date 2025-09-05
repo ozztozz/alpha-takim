@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Takim,Sporcu,Odeme,AYLAR
+from .models import Takim,Sporcu,Odeme,AYLAR,KISISEL_BILGILER
 from .forms import FormSporcu,FormTakim,FormSaglik,FormYuzme,FormSporcuFull,FormUlasim,FormOdeme
 from django.views.generic import CreateView,UpdateView,DeleteView
 from django.db.models import Count
@@ -53,7 +53,15 @@ def modal(request):
     return render(request,'modal.html',{"takimlar":takimlar,'sporcular':sporcular})
 
 
-
+from django.core import serializers
+def sporcubilgileri(request,s_uuid):
+    sporcu=Sporcu.objects.filter(s_uuid=s_uuid).values().first()
+    kisisel_bilgiler=[]
+    
+    for kategori,data in KISISEL_BILGILER.items():
+        for baslik,soru in data.items():
+            kisisel_bilgiler.append({'kategori':kategori,'baslik':baslik,'soru':soru,'bilgi':sporcu[baslik]})
+    return render(request, 'sporcu_bilgileri.html',{'sporcu':sporcu,'kisisel_bilgiler':kisisel_bilgiler})
 
 
 def sporcudetay(request,s_uuid):
@@ -70,6 +78,8 @@ def sporcudetay(request,s_uuid):
                 odeme_check.append({'ay':ay[1],'odeme_tarihi':None})
                 odenmemis=True
     odeme_check.reverse()
+    odeme_check=odeme_check[:3]
+    
     
     if odemeler.filter(ay=bugun.month):
         odenmeyen=None
@@ -87,7 +97,7 @@ def sporcudetay(request,s_uuid):
         kayit=False
 
 
-    response=render(request, 'sporcu_detay.html',{'sporcu':sporcu,
+    response=render(request, 'sporcu_bilgileri.html',{'sporcu':sporcu,
                                                   'odenmemis':odenmemis,
                                                   'odeme_check':odeme_check,
                                                   'formSaglik':formSaglik,'formYuzme':formYuzme,
@@ -211,9 +221,4 @@ def odeme_list(request,ay=None):
     onceki_aylar=list(reversed(AYLAR[:bugun.month+1]))
 
     return render (request,'odeme_listesi.html',{'sporcular':sporcular,'aylar':onceki_aylar})
-
-def sporcu_bilgileri(request,s_uuid):
-    sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
-    print(sporcu.kronik_hastalik.help_text)
-    return render(request,'sporcu_bilgileri.html',{'sporcu':sporcu})
 

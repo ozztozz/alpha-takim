@@ -18,10 +18,33 @@ class Takim (models.Model):
 YES_NO= (
     ("Evet", "Evet"),
     ("Hayır","Hayır"),
-
 )
 
-unvan=models.TextField(choices=YES_NO,default='Hayır')
+KISISEL_BILGILER={
+    "yuzme":{
+    "yuzme_gecmisi": "Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar süreyle?",
+    "yuzme_bilgisi":"Hangi yüzme tekniklerini biliyor? (Serbest/Sırtüstü/Kurbağalama/Kelebek)",
+    "derinlik":"Derin suya girebiliyor mu?",
+    "su_korkusu":"Suya atlama / batma korkusu yaşıyor mu?",
+    "denizde_yuzme":"Havuz dışında denizde / gölde yüzme deneyimi oldu mu?",
+    "neden_yuzme":"Aile bu eğitimi neden aldırmak istiyor? (Hobi, öğrenme, lisansli yüzücü vb.)",
+    "diger_spor":"Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve saatleri)",
+    "istek_yuzme":"Sporcu bu eğitime ne kadar istekli? (Aile gözlemine gore)",
+    "vade_yuzme":"Ailenin uzun vadeli beklentisi nedir?"},
+    "saglik":{
+    "kronik_hastalik":"Herhangi bir kronik rahatsızlığı var mı? (Astim, diyabet, epilepsi vb.)",
+    "sakatlik_ameliyat":"Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve detayları)?",
+    "kullanilan_ilac":"Düzenli kullandığı ilaçlar var mı?",
+    "alerji":"Alerjik olduğu herhangi bir madde / ilaç / besin var mı?",
+    "kalp":" Kalp veya solunumla ilgili şikâyet yasadı mı?",
+    "sosyal":"Sporcu içe dönük mü, dışa dönük mü?",
+    "kalabalik":"Kalabalık ortamlarda rahat mı?",
+    "komut":" Komut almada zorlanır mı?"},
+    "notlar":{
+    "aile_not":"Ailenin özel olarak paylaşmak istediği başka bir durum var mı?",
+    "antrenor_not":"Antrenörün ilk izlenim notu (gözlem sonrası doldurulabilir)."},
+}
+
 class Sporcu(models.Model):
     resim=models.ImageField(null=True,blank=True,upload_to='media/')
     adi=models.CharField(max_length=200)
@@ -39,7 +62,6 @@ class Sporcu(models.Model):
           primary_key=False, editable=False,null=True)
 
     kronik_hastalik=models.CharField(null=True,blank=True,max_length=200)
-    kronik_hastalik.aciklama='Kronik hastalik var mi'
     sakatlik_ameliyat=models.CharField(null=True,blank=True ,max_length=200)
     kullanilan_ilac=models.CharField(null=True,blank=True ,max_length=200)
     alerji=models.CharField(null=True,blank=True ,max_length=200)

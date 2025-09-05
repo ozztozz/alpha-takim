@@ -1,10 +1,7 @@
-{% extends "_base_kayit.html" %}
+{% extends "_base_yeni.html" %}
 
 {% block style %}
 
-
-<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 {% endblock style %}
 
@@ -32,8 +29,6 @@
     </div>
   </div>
 
-
-  {{sporcu.kronik_hastalik.aciklama}}
 <div class="tabs tabs-border">
   <input type="radio" name="my_tabs_2" class="tab" aria-label="Yüzme"  checked="checked"/>
   <div class="tab-content border-base-300 bg-base-100 p-10">
@@ -95,6 +90,8 @@
 
   </div>
 
+
+ {{kisisel_bilgiler}}
   <input type="radio" name="my_tabs_2" class="tab" aria-label="Sağlık" />
   <div class="tab-content border-base-300 bg-base-100 p-10">
             <div class="bg-gray-200 px-2 pt-2 rounded pb-3">
