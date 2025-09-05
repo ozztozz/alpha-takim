@@ -62,7 +62,7 @@ def sporcubilgileri(request,s_uuid):
         kisisel_bilgiler.append({'kategori':kategori,'sorular':[]})
         for baslik,soru in data.items():
             kisisel_bilgiler[index]['sorular'].append({'baslik':baslik,'soru':soru,'bilgi':sporcu[baslik]})
-        index=+1
+        index=index+1
     return render(request, 'sporcu_bilgileri.html',{'sporcu':sporcu,'kisisel_bilgiler':kisisel_bilgiler})
 
 
