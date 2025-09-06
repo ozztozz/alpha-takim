@@ -40,7 +40,7 @@ def sporcu_list(request):
 @login_required
 def takim_list(request):
     takimlar = Takim.objects.annotate(number_of_sporcu=Count('sporcu'))
-    sporcular=Sporcu.objects.all().values('dogum_tarihi__year','takim__adi','takim__renk','adi','soyadi','takim__adi','s_uuid')
+    sporcular=Sporcu.objects.filter(aktif=True).values('dogum_tarihi__year','takim__adi','takim__renk','adi','soyadi','takim__adi','s_uuid')
     takim_yas = sporcular.values('dogum_tarihi__year','takim__adi','takim__renk').annotate(sayi=Count('id'))
 
    
