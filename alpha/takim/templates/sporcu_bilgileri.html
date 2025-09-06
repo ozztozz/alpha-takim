@@ -12,9 +12,9 @@
 
 
 <!--Profile Tabs-->
-<div class="w-full md:w-1/2 ">
+<div class="w-full  h-screen md:w-1/2 ">
   <!--Top user 1-->
-  <div class="rounded mt-12 rounded-lg overflow-hidden border border-gray-300 shadow-lg   ">
+  <div class="rounded rounded-lg overflow-hidden border border-gray-300 shadow-lg   ">
     <div class="h-16  shadow-xl w-full overflow-hidden bg-{{sporcu.takim.renk}}-500"></div>
     <div class="flex justify-center -mt-8">
       <img {% if sporcu.resim %}src="{{sporcu.resim.url}}" {% else %}src="/media/logo.jpeg" {% endif %} alt=""
@@ -50,7 +50,7 @@
        {% for soru in kategori.sorular %}
           <tr>
         <td> {{soru.soru}}</td>
-        <td>{{soru.bilgi}}</td>
+        <td>{{soru.bilgi|default_if_none:"--"}}</td>
       </tr>
        {% endfor %}
         

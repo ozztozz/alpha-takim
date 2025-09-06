@@ -21,7 +21,7 @@ YES_NO= (
 )
 
 KISISEL_BILGILER={
-    "yuzme":{
+    "Yüzme":{
     "yuzme_gecmisi": "Daha önce yüzme eğitimi aldı mı? Nerede ve ne kadar süreyle?",
     "yuzme_bilgisi":"Hangi yüzme tekniklerini biliyor? (Serbest/Sırtüstü/Kurbağalama/Kelebek)",
     "derinlik":"Derin suya girebiliyor mu?",
@@ -31,7 +31,7 @@ KISISEL_BILGILER={
     "diger_spor":"Başka spor dallarıyla uğraşıyor mu? (Varsa günleri ve saatleri)",
     "istek_yuzme":"Sporcu bu eğitime ne kadar istekli? (Aile gözlemine gore)",
     "vade_yuzme":"Ailenin uzun vadeli beklentisi nedir?"},
-    "saglik":{
+    "Sağlık":{
     "kronik_hastalik":"Herhangi bir kronik rahatsızlığı var mı? (Astim, diyabet, epilepsi vb.)",
     "sakatlik_ameliyat":"Geçirilmiş ciddi sakatlık veya ameliyatlar (varsa yılı ve detayları)?",
     "kullanilan_ilac":"Düzenli kullandığı ilaçlar var mı?",
@@ -40,7 +40,7 @@ KISISEL_BILGILER={
     "sosyal":"Sporcu içe dönük mü, dışa dönük mü?",
     "kalabalik":"Kalabalık ortamlarda rahat mı?",
     "komut":" Komut almada zorlanır mı?"},
-    "notlar":{
+    "Notlar":{
     "aile_not":"Ailenin özel olarak paylaşmak istediği başka bir durum var mı?",
     "antrenor_not":"Antrenörün ilk izlenim notu (gözlem sonrası doldurulabilir)."},
 }

@@ -1,4 +1,4 @@
-{% extends '_base_kayit.html' %}
+{% extends '_base.html' %}
 
 
 {% block content %}
@@ -10,7 +10,7 @@
     <!-- ====== Hero Section Start -->
     <div class="relative bg-white">
       <div class="container">
-        <div class="lg:text-right lg:ml-auto">
+        <div class="lg:ml-auto lg:flex">
             <div class="relative inline-block  lg:pt-0">
               <img
                 src="/media/logo4.jpeg"
@@ -21,7 +21,7 @@
             </div>
           </div>
      
-        <div class="flex flex-wrap  -mx-4">
+        <div class="flex flex-wrap  lg:flex lg:justify-center">
           <div class="w-full lg:w-5/12 px-4">
             <div class="hero-content">
 
@@ -41,9 +41,9 @@
               >
          HOŞGELDİNİZ
               </h1>
-              <p class="text-center mb-8 text-body-color max-w-[480px]">
-Yüzme öğrenmek ya da profesyonel bir yüzücü olmak istiyorsanız, doğru yerdesiniz ! <br>
-Hedefinize ulaşmak için hemen kayıt formumuzu doldurun, suya bizimle güçlü bir adım atın !
+              <p class="text-base mb-8 text-body-color max-w-[480px]">
+Yüzme öğrenmek ya da profesyonel bir yüzücü olmak istiyorsanız, doğru yerdesiniz! <br>
+Hedefinize ulaşmak için hemen kayıt formumuzu doldurun, suya bizimle güçlü bir adım atın!
               </p>
               <ul class="flex flex-wrap justify-center items-center">
                 <li>{% include 'partials/modal_sporcu_yeni.html' %}</li>

@@ -53,15 +53,15 @@ def modal(request):
     return render(request,'modal.html',{"takimlar":takimlar,'sporcular':sporcular})
 
 
-from django.core import serializers
 def sporcubilgileri(request,s_uuid):
-    sporcu=Sporcu.objects.filter(s_uuid=s_uuid).values().first()
+    sporcu=Sporcu.objects.filter(s_uuid=s_uuid).first()
+    sporcu_data=Sporcu.objects.filter(s_uuid=s_uuid).values().first()
     kisisel_bilgiler=[]
     index=0
     for kategori,data in KISISEL_BILGILER.items():
         kisisel_bilgiler.append({'kategori':kategori,'sorular':[]})
         for baslik,soru in data.items():
-            kisisel_bilgiler[index]['sorular'].append({'baslik':baslik,'soru':soru,'bilgi':sporcu[baslik]})
+            kisisel_bilgiler[index]['sorular'].append({'baslik':baslik,'soru':soru,'bilgi':sporcu_data[baslik]})
         index=index+1
     return render(request, 'sporcu_bilgileri.html',{'sporcu':sporcu,'kisisel_bilgiler':kisisel_bilgiler})
 
@@ -99,7 +99,7 @@ def sporcudetay(request,s_uuid):
         kayit=False
 
 
-    response=render(request, 'sporcu_bilgileri.html',{'sporcu':sporcu,
+    response=render(request, 'sporcu_detay.html',{'sporcu':sporcu,
                                                   'odenmemis':odenmemis,
                                                   'odeme_check':odeme_check,
                                                   'formSaglik':formSaglik,'formYuzme':formYuzme,
