@@ -137,6 +137,9 @@
 .w-auto {
   width: auto;
 }
+.w-fit {
+  width: fit-content;
+}
 .w-full {
   width: 100%;
 }
@@ -258,6 +261,9 @@
 .overflow-x-auto {
   overflow-x: auto;
 }
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -328,6 +334,9 @@
 }
 .fill-current {
   fill: currentcolor;
+}
+.object-fill {
+  object-fit: fill;
 }
 .object-scale-down {
   object-fit: scale-down;
