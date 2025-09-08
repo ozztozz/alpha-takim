@@ -114,15 +114,15 @@ class Sporcu(models.Model):
 
 
 ODEME_TURU= (
-    ("Uyelik", "Uyelik"),
-    ("MALZEME", "Malzeme"),
+    ("Uyelik", "Üyelik"),
+    ("Malzeme", "Malzeme"),
 )
 MALZEME_TURU= (
     ("T-shirt", "T-shirt"),
-    ("Esofman", "Esofman"),
+    ("Esofman", "Eşofman"),
     ("Bone", "Bone"),
     ("Bere", "Bere"),
-    ("Corap", "Corap"),
+    ("Corap", "Çorap"),
 )
 
 
@@ -146,6 +146,7 @@ class Odeme(models.Model):
     sporcu=models.ForeignKey(Sporcu,on_delete=models.CASCADE)
     odeme_turu=models.CharField(choices=ODEME_TURU, max_length=200)
     malzeme_turu=models.CharField(choices=MALZEME_TURU,blank=True,null=True, max_length=200)
+    miktar=models.IntegerField(default=1)
     yil=models.IntegerField()
     ay=models.IntegerField(choices=AYLAR)
     odendi=models.BooleanField(default=False)

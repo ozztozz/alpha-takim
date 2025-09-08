@@ -12,7 +12,7 @@ from datetime import date
 @login_required
 def  dashboard(request):
     bugun=date.today()
-    ay=bugun.month-1
+    ay=bugun.month
     yil=bugun.year
     
     if bugun.day>15:
@@ -23,7 +23,7 @@ def  dashboard(request):
     odemeler=Odeme.objects.filter(ay=ay,yil=yil,odendi=True).count()
     form=FormTakim
     sporcuform=FormSporcu
-    ay_adi=AYLAR[ay]
+    ay_adi=AYLAR[ay-1]
     return render(request,'dashboard.html',{'takimlar':takimlar,'sporcular':sporcular,'odemeler':odemeler,'ay_adi':ay_adi})
 
 
@@ -67,9 +67,11 @@ def sporcubilgileri(request,s_uuid):
 
 
 def sporcudetay(request,s_uuid):
+
     bugun=date.today()
     sporcu=get_object_or_404(Sporcu,s_uuid=s_uuid)
     odemeler=Odeme.objects.filter(sporcu=sporcu,odeme_turu='Uyelik')
+    malzemeler=Odeme.objects.filter(sporcu=sporcu,odeme_turu='Malzeme').order_by('-created','-id')
     odenmemis=False
     odeme_check=[]
     for ay in AYLAR:
@@ -81,29 +83,20 @@ def sporcudetay(request,s_uuid):
                 odenmemis=True
     odeme_check.reverse()
     odeme_check=odeme_check[:3]
-    
-    
-    if odemeler.filter(ay=bugun.month):
-        odenmeyen=None
-    else:
-        odenmeyen=AYLAR[bugun.month][1] 
-
-    formSaglik=FormSaglik(instance=sporcu)
-    formYuzme=FormYuzme(instance=sporcu)
-    formSporcu=FormSporcu(instance=sporcu)
-    formUlasim=FormUlasim(instance=sporcu)
-
-    
+ 
     kayit=True
     if request.COOKIES.get('s_uuid'):
         kayit=False
-
+    malzeme=request.GET.get("malzeme")
+    print(malzeme)
+    
 
     response=render(request, 'sporcu_detay.html',{'sporcu':sporcu,
                                                   'odenmemis':odenmemis,
                                                   'odeme_check':odeme_check,
-                                                  'formSaglik':formSaglik,'formYuzme':formYuzme,
-                                                  'formSporcu':formSporcu,'formUlasim':formUlasim,
+                                                  'malzemeler':malzemeler,
+                                                  'malzeme':malzeme,
+
                                                   'kayit':kayit})
     response.set_cookie('s_uuid',sporcu.s_uuid)
     
@@ -196,6 +189,32 @@ def odeme_ekle(request):
         form=FormOdeme()
     return  redirect('/takim/odeme_list/'+ay)
     
+
+@login_required
+@never_cache
+def malzeme_odeme(request):
+    if request.method=='POST':
+
+        data=request.POST
+        print(data)
+        if data.get('method')== 'delete':
+            odeme=Odeme.objects.get(id=data.get('id'))
+            odeme.delete()
+            return  redirect('/takim/sporcudetay/'+data.get('sporcu')+'/?malzeme='+data.get('id')) 
+        sporcu=Sporcu.objects.get(id=int(data.get('sporcu')))
+        odeme_id=data.get('id')
+
+        if odeme_id:
+            odeme=Odeme.objects.get(id=odeme_id)
+            form=FormOdeme(request.POST,instance=odeme)
+        else:
+            form=FormOdeme(request.POST)
+        if form.is_valid():
+            malzeme=form.save()
+        else:
+            print(form.errors)
+
+    return  redirect('/takim/sporcudetay/'+str(sporcu.s_uuid)+'?malzeme='+str(malzeme.id))    
 
 @login_required
 @never_cache
